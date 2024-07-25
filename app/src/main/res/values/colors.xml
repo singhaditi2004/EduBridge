@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="sky">#1C88A0</color>
+    <color name="darkSky">#2A8FA6</color>
 </resources>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Edu Bridge</string>
+    <string name="strHome">Join 100,000+ teachers who\'ve found jobs on Edubridge .</string>
+    <string name="btnGet">Get Started</string>
 </resources>
