@@ -9,8 +9,9 @@
 
 
     <TextView
-        android:layout_width="370dp"
-        android:layout_height="370dp"
+        android:layout_width="@dimen/_310sdp"
+        android:layout_height="@dimen/_310sdp"
+        android:layout_marginTop="@dimen/_minus42sdp"
         android:background="@drawable/circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,15 +19,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045"
-        android:layout_marginTop="-42dp"
-        android:layout_marginRight="-239dp"
+        android:layout_marginLeft="@dimen/_140sdp"
         android:gravity="center"
         />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="-40dp"
+        android:layout_marginRight="@dimen/_minus40sdp"
         android:src="@drawable/tree_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
