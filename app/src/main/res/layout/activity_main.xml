@@ -9,8 +9,8 @@
 
 
     <TextView
-        android:layout_width="@dimen/_310sdp"
-        android:layout_height="@dimen/_310sdp"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_260sdp"
         android:layout_marginTop="@dimen/_minus42sdp"
         android:background="@drawable/circle"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,7 +26,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/_minus40sdp"
+        android:layout_marginRight="@dimen/_minus20sdp"
         android:src="@drawable/tree_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,8 +69,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/getBtn"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_43sdp"
         android:background="@drawable/button_bg"
         android:elevation="12dp"
         android:fontFamily="@font/alkatra_semibold"
