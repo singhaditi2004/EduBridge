@@ -42,9 +42,17 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="welcome_back">Welcome Back !</string>
+
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
+
+        <string name="first_fragment_label">First Fragment</string>
+        <string name="second_fragment_label">Second Fragment</string>
+        <!-- Add other strings here -->
+
+
     <string name="forget_your_password">Forget your password</string>
+    <string name="or">Or</string>
 </resources>
