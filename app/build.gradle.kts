@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -44,4 +45,12 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation ("com.intuit.sdp:sdp-android:1.1.1")
     implementation ("com.google.android.material:material:1.5.0")
+    implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation("androidx.navigation:navigation-fragment:2.7.7")
+    implementation("androidx.navigation:navigation-ui:2.7.7")
+    implementation("com.google.firebase:firebase-database:20.3.1")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
+    implementation ("com.google.firebase:firebase-auth:21.0.1")
+    implementation ("com.google.firebase:firebase-database:20.0.1")
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
 }

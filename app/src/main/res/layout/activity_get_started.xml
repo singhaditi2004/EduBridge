@@ -30,7 +30,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextField"
             android:layout_width="@dimen/_250sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_gravity="center"
             android:background="@color/white"
             android:hint="@string/email"
@@ -39,6 +39,7 @@
             app:hintTextColor="@color/sky">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailLog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -51,7 +52,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passLog"
             android:layout_width="@dimen/_250sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_gravity="center"
             android:background="@color/white"
             android:hint="@string/password"
@@ -65,8 +66,9 @@
             app:layout_constraintVertical_bias="0.6">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwLog"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:textColor="@color/darkSky"
                 app:hintTextColor="@color/sky" />
@@ -142,13 +144,13 @@
             android:background="@color/lightgrey" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/contWithGoogle"
             android:layout_width="@dimen/_237sdp"
             android:layout_height="@dimen/_37sdp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_17sdp"
             android:background="@drawable/whitebgbtn"
-            android:padding="@dimen/_2sdp"
+            android:padding="@dimen/_5sdp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/google_logo" />
     </LinearLayout>
