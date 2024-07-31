@@ -55,4 +55,8 @@
 
     <string name="forget_your_password">Forget your password</string>
     <string name="or">Or</string>
+    <string name="decribes_best">What describes you best?</string>
+    <string name="teacher">Teacher</string>
+    <string name="i_am_a_teacher_looking_for_a_job">I am a teacher looking for a job!</string>
+    <string name="school_authority">School Authority</string>
 </resources>
