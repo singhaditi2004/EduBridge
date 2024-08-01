@@ -18,34 +18,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <ImageView
-                android:layout_width="@dimen/_220sdp"
-                android:layout_height="@dimen/_220sdp"
-                android:src="@drawable/tree_logo"
-                android:layout_gravity="center" />
+                android:layout_width="@dimen/_257sdp"
+                android:layout_height="@dimen/_257sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/tree_icon" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:fontFamily="@font/leckerli_one"
                 android:text="@string/decribes_best"
                 android:textColor="@color/sky"
-                android:fontFamily="@font/leckerli_one"
-                android:textSize="@dimen/_18sdp"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_40sdp" />
+                android:textSize="@dimen/_18sdp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/teacherBtn"
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="@dimen/_40sdp"
-                android:background="@drawable/button_describes"
-                android:text="@string/teacher"
-                android:textColor="@color/darkSky"
-                android:textAllCaps="false"
-                android:fontFamily="@font/leckerli_one"
-                android:textSize="@dimen/_18sdp"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_40sdp" />
+                android:layout_marginTop="@dimen/_40sdp"
+                android:background="@drawable/button_describes"
+                android:fontFamily="@font/leckerli_one"
+                android:text="@string/teacher"
+                android:textAllCaps="false"
+                android:textColor="@color/darkSky"
+                android:textSize="@dimen/_18sdp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -55,30 +59,32 @@
                 android:fontFamily="@font/lexend"
                 android:text="@string/i_am_a_teacher_looking_for_a_job"
                 android:textColor="@color/lightSky"
+                android:textFontWeight="600"
                 android:textSize="@dimen/_10sdp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/schoolBtn"
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="@dimen/_40sdp"
-                android:background="@drawable/button_describes"
-                android:text="@string/school_authority"
-                android:textColor="@color/darkSky"
-                android:textAllCaps="false"
-                android:fontFamily="@font/leckerli_one"
-                android:textSize="@dimen/_18sdp"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_15sdp" />
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/button_describes"
+                android:fontFamily="@font/leckerli_one"
+                android:text="@string/school_authority"
+                android:textAllCaps="false"
+                android:textColor="@color/darkSky"
+                android:textSize="@dimen/_18sdp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I am a School authority looking to hire !"
                 android:layout_gravity="center"
-                android:textColor="@color/lightSky"
-                android:fontFamily="@font/lexend"
-                android:textSize="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_7sdp"
-                />
+                android:fontFamily="@font/lexend"
+                android:text="I am a School authority looking to hire !"
+                android:textColor="@color/lightSky"
+                android:textFontWeight="600"
+                android:textSize="@dimen/_10sdp" />
 
         </LinearLayout>
     </ScrollView>

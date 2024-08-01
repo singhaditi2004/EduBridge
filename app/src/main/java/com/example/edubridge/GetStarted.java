@@ -24,23 +24,27 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class GetStarted extends AppCompatActivity {
-AppCompatButton signIn,signUp;
-ImageButton contGoogle;
-EditText passLog,emailLog;
-public FirebaseAuth mAuth;
+    AppCompatButton signIn, signUp;
+    ImageButton contGoogle;
+    EditText passLog, emailLog;
+    public FirebaseAuth mAuth;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference usersRef = database.getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_get_started);
-        signIn=findViewById(R.id.loginBtn);
-        signUp=findViewById(R.id.signUpBtn);
-        contGoogle=findViewById(R.id.contWithGoogle);
-        passLog=findViewById(R.id.passwLog);
-        emailLog=findViewById(R.id.emailLog);
+        signIn = findViewById(R.id.loginBtn);
+        signUp = findViewById(R.id.signUpBtn);
+        contGoogle = findViewById(R.id.contWithGoogle);
+        passLog = findViewById(R.id.passwLog);
+        emailLog = findViewById(R.id.emailLog);
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +74,7 @@ public FirebaseAuth mAuth;
                                         FirebaseUser user = mAuth.getCurrentUser();
 
 
-                                      // Intent intent = new Intent(GetStarted.this, home.class);
+                                        // Intent intent = new Intent(GetStarted.this, home.class);
                                         // startActivity(intent);
 
 
@@ -80,7 +84,7 @@ public FirebaseAuth mAuth;
                                         Toast.makeText(GetStarted.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
 
-                                        Log.e(emailLog.getText().toString(),"k");
+                                        Log.e(emailLog.getText().toString(), "k");
                                     }
 
                                 }
@@ -94,7 +98,7 @@ public FirebaseAuth mAuth;
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signUpActivity=new Intent(GetStarted.this,Describes.class);
+                Intent signUpActivity = new Intent(GetStarted.this, Describes.class);
                 startActivity(signUpActivity);
             }
         });

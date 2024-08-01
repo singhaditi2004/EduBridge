@@ -8,32 +8,20 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:layout_width="@dimen/_280sdp"
-        android:layout_height="@dimen/_260sdp"
-        android:layout_marginTop="@dimen/_minus42sdp"
-        android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045"
-        android:layout_marginLeft="@dimen/_140sdp"
-        android:gravity="center"
-        />
-
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/_minus20sdp"
+        android:layout_width="@dimen/_307sdp"
+        android:layout_height="@dimen/_307sdp"
+        android:background="@drawable/circle"
+        android:padding="@dimen/_25sdp"
         android:src="@drawable/tree_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
+        android:layout_marginLeft="@dimen/_140sdp"
+        android:layout_marginTop="@dimen/_minus40sdp"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/txtHome"
