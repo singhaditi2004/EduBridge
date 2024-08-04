@@ -72,7 +72,8 @@ public class GetStarted extends AppCompatActivity {
                                         Log.d(TAG, "signInWithEmail:success");
 
                                         FirebaseUser user = mAuth.getCurrentUser();
-
+                                        Intent i= new Intent(GetStarted.this, TeacherProfile.class);
+                                        startActivity(i);
 
                                         // Intent intent = new Intent(GetStarted.this, home.class);
                                         // startActivity(intent);

@@ -96,6 +96,25 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:id="@+id/stateSpinner"
+                android:layout_width="@dimen/_240sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:background="@drawable/spinner_background"
+                 />
+
+            <!-- Add City Spinner -->
+            <Spinner
+                android:id="@+id/citySpinner"
+                android:layout_width="@dimen/_240sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:background="@drawable/spinner_background"
+                />
 
         </LinearLayout>
     </ScrollView>
