@@ -44,6 +44,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation ("com.intuit.sdp:sdp-android:1.1.1")
+    implementation ("com.android.volley:volley:1.2.1")
     implementation ("com.google.android.material:material:1.5.0")
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("androidx.navigation:navigation-fragment:2.7.7")
@@ -55,6 +56,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation ("com.google.firebase:firebase-database:20.0.5")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
-    implementation ("com.google.android.libraries.places:places:3.1.0")
+  //  implementation ("com.google.android.libraries.places:places:3.1.0")
 
 }

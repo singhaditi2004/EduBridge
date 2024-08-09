@@ -59,4 +59,9 @@
     <string name="teacher">Teacher</string>
     <string name="i_am_a_teacher_looking_for_a_job">I am a teacher looking for a job!</string>
     <string name="school_authority">School Authority</string>
+    <string name="address">Address</string>
+    <string name="name">Name</string>
+    <string name="bio">Bio</string>
+    <string name="upload_your_resume">Upload your resume</string>
+    <string name="save">Save</string>
 </resources>

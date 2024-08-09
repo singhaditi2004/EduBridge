@@ -7,23 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TeacherProfile">
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
-        android:layout_width="@dimen/_124sdp"
-        android:layout_height="@dimen/_204sdp"
-        android:layout_gravity="center"
-        android:src="@drawable/user"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
-    <ImageView
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:src="@drawable/add"
-        android:background="@drawable/button_describes"
-        android:layout_marginTop="@dimen/_minus60sdp"
-        android:layout_marginLeft="@dimen/_190sdp"
-      />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,13 +16,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_140sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/user"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+            <ImageView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:src="@drawable/add"
+                android:background="@drawable/button_describes"
+                android:layout_marginTop="@dimen/_minus55sdp"
+                android:layout_marginStart="@dimen/_190sdp"
+                />
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nameLay"
             android:layout_width="@dimen/_250sdp"
             android:layout_height="@dimen/_50sdp"
             android:layout_gravity="center"
             android:background="@color/white"
-            android:hint="Name"
+            android:hint="@string/name"
             android:layout_marginTop="@dimen/_7sdp"
             app:boxStrokeColor="@color/sky"
             app:hintTextColor="@color/sky"
@@ -80,7 +80,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_gravity="center"
                 android:background="@color/white"
-                android:hint="Address"
+                android:hint="@string/address"
                 android:layout_marginTop="@dimen/_7sdp"
                 app:boxStrokeColor="@color/sky"
                 app:hintTextColor="@color/sky"
@@ -95,27 +95,80 @@
                     app:hintTextColor="@color/sky" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
             <Spinner
                 android:id="@+id/stateSpinner"
-                android:layout_width="@dimen/_240sdp"
+                android:layout_width="@dimen/_130sdp"
                 android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_marginTop="@dimen/_7sdp"
                 android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_marginStart="@dimen/_35sdp"
                 android:background="@drawable/spinner_background"
                  />
 
             <!-- Add City Spinner -->
             <Spinner
                 android:id="@+id/citySpinner"
-                android:layout_width="@dimen/_240sdp"
+                android:layout_width="@dimen/_130sdp"
                 android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_7sdp"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:background="@drawable/spinner_background"
                 />
-
+            </LinearLayout>
+            <Spinner
+                android:id="@+id/experience"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/spinner_background"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_38sdp"
+                android:background="@drawable/spinner_background"
+                android:text="@string/upload_your_resume"
+                android:textAllCaps="false"
+                android:textColor="@color/darkSky"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:drawableEnd="@drawable/arrow"
+                android:paddingEnd="@dimen/_55sdp"
+                android:paddingStart="@dimen/_50sdp"
+                />
+            <EditText
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:ems="10"
+                android:hint="@string/bio"
+                android:textColorHint="@color/darkSky"
+                android:textColor="@color/darkSky"
+                android:background="@drawable/spinner_background"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_gravity="center"
+                android:inputType="textMultiLine" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:text="@string/save"
+                android:textSize="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/button_bg"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                />
         </LinearLayout>
+
     </ScrollView>
+
+
 </LinearLayout>
