@@ -64,4 +64,7 @@
     <string name="bio">Bio</string>
     <string name="upload_your_resume">Upload your resume</string>
     <string name="save">Save</string>
+    <string name="create_profile">Create Profile</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="add_icon">Add Icon</string>
 </resources>

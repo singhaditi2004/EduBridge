@@ -1,15 +1,21 @@
 package com.example.edubridge;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,6 +23,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 //import com.google.android.libraries.places.api.Places;
 //import com.google.android.libraries.places.api.model.AutocompletePrediction;
@@ -29,6 +37,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,13 +57,23 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class TeacherProfile extends AppCompatActivity {
     private Spinner stateSpinner, citySpinner;
     //private PlacesClient placesClient;
     private ArrayAdapter<String> stateAdapter, cityAdapter;
+    private FirebaseAuth mAuth;
     private RequestQueue requestQueue;
     private final String geonamesUsername = "singhaditi2004";
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Uri imageUri;
+    private CircleImageView profileImageView;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+    private DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +83,7 @@ public class TeacherProfile extends AppCompatActivity {
             Places.initialize(getApplicationContext(), "AIzaSyBTOP3oytuqzkg9Pu9uERNrBK2PR4ld15Q");
         }*/
 
-       // placesClient = Places.createClient(this);
+        // placesClient = Places.createClient(this);
         stateSpinner = findViewById(R.id.stateSpinner);
         citySpinner = findViewById(R.id.citySpinner);
 
@@ -82,12 +110,26 @@ public class TeacherProfile extends AppCompatActivity {
                 // Handle case when nothing is selected
             }
         });
+        profileImageView = findViewById(R.id.profile_image);
+        ImageView addIcon = findViewById(R.id.add_icon);
+
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference().child("profile_images");
+
+        addIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooser();
+            }
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
     }
+
     private void fetchStates() {
         String url = "http://api.geonames.org/childrenJSON?geonameId=1269750&username=" + geonamesUsername;
 
@@ -161,6 +203,114 @@ public class TeacherProfile extends AppCompatActivity {
         });
 
         requestQueue.add(jsonObjectRequest);
+    }
+
+    private void openFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            imageUri = data.getData();
+            profileImageView.setImageURI(imageUri);  // Preview the selected image
+            uploadImageToFirebase();
+        }
+        else{
+            profileImageView.setImageResource(R.drawable.user);
+        }
+    }
+
+    private void uploadImageToFirebase() {
+        if (imageUri != null) {
+            mAuth = FirebaseAuth.getInstance();
+            String email = mAuth.getCurrentUser().getEmail();
+            String encodedEmail = encodeEmail(email);
+            StorageReference fileReference = storageReference.child(encodedEmail + "." + getFileExtension(imageUri));
+
+            // Delete the old image before uploading the new one
+            fileReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    fileReference.putFile(imageUri)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            String imageUrl = uri.toString();
+                                            saveImageUrlToDatabase(imageUrl);
+                                            Picasso.get().load(imageUrl).into(profileImageView);
+                                        }
+                                    });
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(TeacherProfile.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            });
+        }
+        else{
+            profileImageView.setImageResource(R.drawable.user);
+        }
+    }
+
+    private void saveImageUrlToDatabase(String imageUrl) {
+        String email = mAuth.getCurrentUser().getEmail();
+        String encodedEmail = encodeEmail(email);
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(encodedEmail);
+        databaseReference.child("profileImageUrl").setValue(imageUrl);
+    }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mAuth = FirebaseAuth.getInstance();
+        String email = mAuth.getCurrentUser().getEmail();
+        String encodedEmail = encodeEmail(email);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(encodedEmail);
+
+        // Fetch the profile image URL from the database
+        databaseReference.child("profileImageUrl").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String savedImageUrl = dataSnapshot.getValue(String.class);
+                if (savedImageUrl != null && !savedImageUrl.isEmpty()) {
+                    Picasso.get()
+                            .load(savedImageUrl)
+                            .error(R.drawable.user) // Default image if the URL is invalid
+                            .into(profileImageView);
+                } else {
+                    profileImageView.setImageResource(R.drawable.user);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(TeacherProfile.this, "Failed to load profile image.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private String encodeEmail(String email) {
+        return email.replace(".", ",");
     }
 
 }
