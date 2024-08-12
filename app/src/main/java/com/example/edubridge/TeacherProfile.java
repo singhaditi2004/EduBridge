@@ -2,6 +2,8 @@ package com.example.edubridge;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.view.ViewGroup;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,12 +13,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -61,7 +65,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class TeacherProfile extends AppCompatActivity {
-    private Spinner stateSpinner, citySpinner;
+    private Spinner stateSpinner, citySpinner,experienceSpinner;
     //private PlacesClient placesClient;
     private ArrayAdapter<String> stateAdapter, cityAdapter;
     private FirebaseAuth mAuth;
@@ -73,7 +77,7 @@ public class TeacherProfile extends AppCompatActivity {
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
-
+    private AppCompatButton saveBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,7 +126,45 @@ public class TeacherProfile extends AppCompatActivity {
                 openFileChooser();
             }
         });
+        experienceSpinner=findViewById(R.id.experience);
+        List<String> experienceLevels = new ArrayList<>();
+        experienceLevels.add("Select Experience Level"); // Add hint as the first item
+        experienceLevels.add("Fresher");
+        experienceLevels.add("1-3 years");
+        experienceLevels.add("3-5 years");
+        experienceLevels.add("5+ years");
+        ArrayAdapter<String> experienceAdapter = new ArrayAdapter<String>(this, R.layout.custom_spinner_item, experienceLevels) {
+            @Override
+            public boolean isEnabled(int position) {
+                // Disable the first item from Spinner
+                // First item is display hint
+                return position != 0;
+            }
 
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+// Apply the custom adapter to the Spinner
+        experienceAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
+        experienceSpinner.setAdapter(experienceAdapter);
+        saveBtn=findViewById(R.id.saveBtn);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadImageToFirebase();
+            }
+        });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -218,7 +260,7 @@ public class TeacherProfile extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
             profileImageView.setImageURI(imageUri);  // Preview the selected image
-            uploadImageToFirebase();
+
         }
         else{
             profileImageView.setImageResource(R.drawable.user);
