@@ -2,6 +2,8 @@ package com.example.edubridge;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.provider.OpenableColumns;
 import android.view.ViewGroup;
 import android.graphics.Color;
 import android.net.Uri;
@@ -65,7 +67,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class TeacherProfile extends AppCompatActivity {
-    private Spinner stateSpinner, citySpinner,experienceSpinner;
+    private Spinner stateSpinner, citySpinner, experienceSpinner;
     //private PlacesClient placesClient;
     private ArrayAdapter<String> stateAdapter, cityAdapter;
     private FirebaseAuth mAuth;
@@ -78,6 +80,9 @@ public class TeacherProfile extends AppCompatActivity {
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
     private AppCompatButton saveBtn;
+    private static final int PICK_PDF_FILE = 2;
+    private TextView selectedFileName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,7 +131,7 @@ public class TeacherProfile extends AppCompatActivity {
                 openFileChooser();
             }
         });
-        experienceSpinner=findViewById(R.id.experience);
+        experienceSpinner = findViewById(R.id.experience);
         List<String> experienceLevels = new ArrayList<>();
         experienceLevels.add("Select Experience Level"); // Add hint as the first item
         experienceLevels.add("Fresher");
@@ -158,11 +163,23 @@ public class TeacherProfile extends AppCompatActivity {
 // Apply the custom adapter to the Spinner
         experienceAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
         experienceSpinner.setAdapter(experienceAdapter);
-        saveBtn=findViewById(R.id.saveBtn);
+        saveBtn = findViewById(R.id.saveBtn);
+
+        TextView uploadResumeButton = findViewById(R.id.upload_resume_button);
+        selectedFileName = findViewById(R.id.selected_file_name);
+
+        uploadResumeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFilePicker();
+            }
+        });
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 uploadImageToFirebase();
+                Intent i=new Intent(TeacherProfile.this, TeacherHome.class);
+                startActivity(i);
             }
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -261,9 +278,19 @@ public class TeacherProfile extends AppCompatActivity {
             imageUri = data.getData();
             profileImageView.setImageURI(imageUri);  // Preview the selected image
 
-        }
-        else{
+        } else {
             profileImageView.setImageResource(R.drawable.user);
+        }
+        if (requestCode == PICK_PDF_FILE && resultCode == RESULT_OK) {
+            if (data != null) {
+                Uri pdfUri = data.getData();
+
+                // Get the file name from the Uri
+                String fileName = getFileNameFromUri(pdfUri);
+
+                // Display the file name in the TextView
+                selectedFileName.setText(fileName);
+            }
         }
     }
 
@@ -300,8 +327,7 @@ public class TeacherProfile extends AppCompatActivity {
                             });
                 }
             });
-        }
-        else{
+        } else {
             profileImageView.setImageResource(R.drawable.user);
         }
     }
@@ -353,6 +379,38 @@ public class TeacherProfile extends AppCompatActivity {
 
     private String encodeEmail(String email) {
         return email.replace(".", ",");
+    }
+
+    private void openFilePicker() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setType("application/pdf");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, PICK_PDF_FILE);
+    }
+
+    // Helper method to extract the file name from Uri
+    private String getFileNameFromUri(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
     }
 
 }

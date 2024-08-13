@@ -67,4 +67,6 @@
     <string name="create_profile">Create Profile</string>
     <string name="phone_number">Phone Number</string>
     <string name="add_icon">Add Icon</string>
+    <string name="upload_resume">Upload resume</string>
+    <string name="no_file_selected">No file selected</string>
 </resources>
