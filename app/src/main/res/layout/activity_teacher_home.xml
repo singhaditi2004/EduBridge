@@ -3,43 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
     tools:context=".TeacherHome">
-
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#3A9EBF"> <!-- Change this color to match your app theme -->
 
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:title="Edubridge"
+           app:titleTextColor="@android:color/white"
+            app:titleTextAppearance="@style/CustomToolbarTitle" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginBottom="@dimen/_12sdp"
-                android:fontFamily="@font/merriweather_bold"
-                android:text="@string/create_profile"
-                android:textColor="@color/darkSky"
-                android:textSize="@dimen/_28sdp" />
-
-            <ImageView
-                android:layout_width="@dimen/_220sdp"
-                android:layout_height="@dimen/_160sdp"
-                android:src="@drawable/schoool"
-                android:layout_gravity="center"
-                android:paddingTop="@dimen/_45sdp"
-                android:paddingBottom="@dimen/_5sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingRight="@dimen/_5sdp"
-                android:scaleType="centerCrop"
-                android:background="@drawable/school_image_bg"/>
-        </LinearLayout>
-    </ScrollView>
+    </com.google.android.material.appbar.AppBarLayout>
 </LinearLayout>

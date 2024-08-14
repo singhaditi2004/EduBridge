@@ -69,4 +69,6 @@
     <string name="add_icon">Add Icon</string>
     <string name="upload_resume">Upload resume</string>
     <string name="no_file_selected">No file selected</string>
+    <string name="school_name">School Name</string>
+    <string name="school_website_link">School website link</string>
 </resources>

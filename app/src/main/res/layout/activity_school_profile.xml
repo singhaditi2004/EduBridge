@@ -1,10 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SchoolProfile">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/white"
+android:orientation="vertical"
+tools:context=".SchoolProfile">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/merriweather_bold"
+            android:text="@string/create_profile"
+            android:textColor="@color/darkSky"
+            android:textSize="@dimen/_28sdp" />
+
+        <ImageView
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="@dimen/_160sdp"
+            android:layout_gravity="center"
+            android:background="@drawable/school_image_bg"
+            android:padding="@dimen/_8sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/schoool" />
+
+        <ImageView
+            android:id="@+id/addImageSchool"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_250sdp"
+            android:layout_marginTop="@dimen/_minus30sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/button_describes"
+            android:contentDescription="@string/add_icon"
+            android:src="@drawable/add" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nameSchoolLay"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:background="@color/white"
+            android:fontFamily="@font/albert_sans_medium"
+            android:hint="@string/school_name"
+            app:boxStrokeColor="@color/sky"
+            app:hintTextColor="@color/sky">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nameSchool"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/albert_sans_medium"
+                android:gravity="center"
+                android:textColor="@color/darkSky"
+                app:hintTextColor="@color/sky" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneLay"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:background="@color/white"
+            android:fontFamily="@font/albert_sans_medium"
+            android:hint="@string/phone_number"
+            app:boxStrokeColor="@color/sky"
+            app:hintTextColor="@color/sky">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phoneSchool"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/albert_sans_medium"
+                android:gravity="center"
+                android:textColor="@color/darkSky"
+                app:hintTextColor="@color/sky" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addLay"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:background="@color/white"
+            android:fontFamily="@font/albert_sans_medium"
+            android:hint="@string/address"
+            app:boxStrokeColor="@color/sky"
+            app:hintTextColor="@color/sky">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addressSchool"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/albert_sans_medium"
+                android:gravity="center"
+                android:textColor="@color/darkSky"
+                app:hintTextColor="@color/sky" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/stateSpinnerSchool"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_33sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:background="@drawable/spinner_background"
+                android:fontFamily="@font/albert_sans_medium"
+                android:gravity="center" />
+
+            <!-- Add City Spinner -->
+            <Spinner
+                android:id="@+id/citySpinnerSchool"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:background="@drawable/spinner_background"
+                android:fontFamily="@font/albert_sans_medium"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/webLay"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:background="@color/white"
+            android:fontFamily="@font/albert_sans_medium"
+            android:hint="@string/school_website_link"
+            app:boxStrokeColor="@color/sky"
+            app:hintTextColor="@color/sky">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/webLinkSchool"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/albert_sans_medium"
+                android:gravity="center"
+                android:textColor="@color/darkSky"
+                app:hintTextColor="@color/sky" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/bio"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:background="@drawable/spinner_background"
+            android:ems="10"
+            android:fontFamily="@font/albert_sans_medium"
+            android:gravity="center"
+            android:hint="@string/bio"
+            android:inputType="textMultiLine"
+            android:textColor="@color/darkSky"
+            android:textColorHint="@color/darkSky" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/saveBtn"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_39sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:background="@drawable/button_bg"
+            android:fontFamily="@font/albert_sans_medium"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp" />
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>
