@@ -71,4 +71,5 @@
     <string name="no_file_selected">No file selected</string>
     <string name="school_name">School Name</string>
     <string name="school_website_link">School website link</string>
+    <string name="notification">Notification</string>
 </resources>

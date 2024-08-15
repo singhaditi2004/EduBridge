@@ -4,8 +4,9 @@
     <!-- Define your custom toolbar title style -->
     <style name="CustomToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:fontFamily">@font/leckerli_one</item> <!-- Use a custom font if you have one -->
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/_24sdp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:titleMargin">@dimen/_5sdp</item>
     </style>
 
 </resources>
