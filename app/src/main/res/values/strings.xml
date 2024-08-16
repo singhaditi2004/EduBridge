@@ -72,4 +72,16 @@
     <string name="school_name">School Name</string>
     <string name="school_website_link">School website link</string>
     <string name="notification">Notification</string>
+    <string name="job_categories">Job Categories</string>
+    <string name="mathematics">Mathematics</string>
+    <string name="science">Science</string>
+    <string name="language">Language</string>
+    <string name="sports">Sports</string>
+    <string name="art">Art</string>
+    <string name="history">History</string>
+    <string name="music">Music</string>
+    <string name="literature">Literature</string>
+    <string name="school_suggestions">School Suggestions</string>
+    <string name="timings">Timings</string>
+    <string name="rating">3.4</string>
 </resources>

@@ -31,7 +31,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_30sdp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -46,6 +45,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
                     android:background="@drawable/searchviewbg"
                     android:elevation="@dimen/_15sdp" />
 
@@ -55,12 +55,222 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
                     android:background="@color/white"
                     android:contentDescription="@string/notification"
                     android:src="@drawable/notification" />
             </LinearLayout>
 
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@color/black" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:tabGravity="center"
+                app:tabIndicatorColor="@android:color/black"
+                app:tabIndicatorGravity="center"
+                app:tabIndicatorHeight="4dp"
+                app:tabSelectedTextColor="@android:color/black"
+                app:tabTextColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/job_categories"
+                android:textColor="@color/black"
+                android:textFontWeight="700"
+                android:textSize="@dimen/_16sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_8sdp">
+
+                <ImageView
+                    android:id="@+id/maths"
+                    android:layout_width="@dimen/_85sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/maths" />
+
+                <ImageView
+                    android:id="@+id/science"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/science" />
+
+                <ImageView
+                    android:id="@+id/language"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/language" />
+
+                <ImageView
+                    android:id="@+id/sports"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/sports" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_minus8sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/mathematics"
+                    android:textFontWeight="700"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/science"
+                    android:textFontWeight="700"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_35sdp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/language"
+                    android:textFontWeight="700"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/sports"
+                    android:textFontWeight="700"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_8sdp">
+
+                <ImageView
+                    android:id="@+id/art"
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/art" />
+
+                <ImageView
+                    android:id="@+id/history"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/history" />
+
+                <ImageView
+                    android:id="@+id/music"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/music" />
+
+                <ImageView
+                    android:id="@+id/special"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/special" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_minus8sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/art"
+                    android:textFontWeight="700"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_52sdp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/history"
+                    android:textFontWeight="700"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_45sdp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/music"
+                    android:textFontWeight="700"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/literature"
+                    android:textFontWeight="700"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/school_suggestions"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textColor="@color/lightGolden"
+                android:textFontWeight="700"
+                android:textSize="@dimen/_13sdp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/schoolRecycle"
+                android:layout_gravity="center"
+                />
         </LinearLayout>
+
+
     </ScrollView>
+
 
 </LinearLayout>
