@@ -9,10 +9,10 @@
         android:layout_width="@dimen/_300sdp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_8sdp"
         android:background="@drawable/cardbg"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
-
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/schoolImg"
@@ -23,7 +23,27 @@
             android:src="@drawable/schoool"
             app:civ_border_color="#FF000000"
             app:civ_border_width="2dp" />
-
+        <TextView
+            android:id="@+id/schoolNameCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/roboto"
+            android:layout_marginStart="@dimen/_113sdp"
+            android:text="@string/school_name"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/schoolTimeCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_55sdp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/timings"
+            android:textColor="@color/lightGolden"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,49 +52,27 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/schoolNameCard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/roboto"
-                android:text="@string/school_name"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/schoolTimeCard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_minus60sdp"
-                android:layout_marginTop="@dimen/_45sdp"
-                android:fontFamily="@font/roboto"
-                android:text="@string/timings"
-                android:textColor="@color/lightGolden"
-                android:textSize="@dimen/_13sdp"
-                android:textStyle="bold" />
-
-
-
-            <RatingBar
-                android:id="@+id/ratingsCard"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_minus60sdp"
-                android:layout_marginTop="@dimen/_110sdp"
-                android:numStars="5"
-                android:rating="0"
-                android:stepSize="1" />
-            <TextView
                 android:id="@+id/getRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_minus60sdp"
-                android:layout_marginTop="@dimen/_110sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_90sdp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/rating"
                 android:textColor="@color/lightGolden"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
+
+            <RatingBar
+                android:id="@+id/ratingsCard"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_85sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1" />
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
