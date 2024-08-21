@@ -71,7 +71,7 @@ public class TeacherHome extends AppCompatActivity {
     public  void loadFrag(Fragment frag){
         FragmentManager fm=getSupportFragmentManager();
         FragmentTransaction tx=fm.beginTransaction();
-        tx.add(R.id.containerFrag, frag);
+        tx.replace(R.id.containerFrag, frag);
         tx.commit();
     }
 }

@@ -12,7 +12,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -285,24 +286,28 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_12sdp" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="?attr/actionBarSize"
-                android:id="@+id/containerFrag"/>
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNav"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/darkSky"
-                android:iconTint="@null"
-                app:menu="@menu/bottomnav"/>
+
 
         </LinearLayout>
 
 
     </ScrollView>
+    <FrameLayout
+        android:id="@+id/containerFrag"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- BottomNavigationView remains fixed at the bottom -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/darkSky"
+        android:iconTint="@null"
+        app:menu="@menu/bottomnav"/>
+
 
 
 </LinearLayout>

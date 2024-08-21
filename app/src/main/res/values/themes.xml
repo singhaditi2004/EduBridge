@@ -5,7 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
+        <item name="colorControlHighlight">@color/lightGolden</item>
     </style>
 
     <style name="Theme.EduBridge" parent="Base.Theme.EduBridge" />
