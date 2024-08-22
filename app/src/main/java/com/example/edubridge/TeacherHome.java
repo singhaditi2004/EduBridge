@@ -52,12 +52,15 @@ public class TeacherHome extends AppCompatActivity {
                     return true;
                 }
                 else if (R.id.settings == id) {
+                    loadFrag(new Settings());
                     return true;
                 }
                 else if (R.id.jobs == id) {
+                    loadFrag(new Jobs());
                     return true;
                 }
                 else {
+                    loadFrag(new Blogs());
                     return true;
                 }
             }
@@ -71,7 +74,7 @@ public class TeacherHome extends AppCompatActivity {
     public  void loadFrag(Fragment frag){
         FragmentManager fm=getSupportFragmentManager();
         FragmentTransaction tx=fm.beginTransaction();
-        tx.replace(R.id.containerFrag, frag);
+        tx.add(R.id.containerFrag, frag);
         tx.commit();
     }
 }
