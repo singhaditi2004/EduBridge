@@ -307,10 +307,10 @@
         android:background="@color/darkSky"
         app:iconTint="@null"
         app:menu="@menu/bottomnav"
-        app:itemIconTint="@null"
+        app:itemIconTint="@color/bottomnavcolor"
         app:itemRippleColor="@color/lightGolden"
         app:itemTextColor="@color/white"
-        app:itemActiveIndicatorStyle="@color/blueSearch"
+        app:itemActiveIndicatorStyle="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
