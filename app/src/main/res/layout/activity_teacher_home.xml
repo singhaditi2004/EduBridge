@@ -305,8 +305,12 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/darkSky"
-        android:iconTint="@null"
+        app:iconTint="@null"
         app:menu="@menu/bottomnav"
+        app:itemIconTint="@null"
+        app:itemRippleColor="@color/lightGolden"
+        app:itemTextColor="@color/white"
+        app:itemActiveIndicatorStyle="@color/blueSearch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
