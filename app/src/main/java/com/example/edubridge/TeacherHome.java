@@ -1,10 +1,13 @@
 package com.example.edubridge;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -40,26 +43,38 @@ public class TeacherHome extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+
+                // Reset scale for all icons to default size
+                for (int i = 0; i < bottonNav.getMenu().size(); i++) {
+                    MenuItem menuItem = bottonNav.getMenu().getItem(i);
+                    View iconView = bottonNav.findViewById(menuItem.getItemId()).findViewById(com.google.android.material.R.id.icon);
+                    if (iconView != null) {
+                        scaleIcon(iconView, false);
+                    }
+                }
+
+                // Get the selected item's icon view and scale it up
+                View selectedIconView = bottonNav.findViewById(id).findViewById(com.google.android.material.R.id.icon);
+                if (selectedIconView != null) {
+                    scaleIcon(selectedIconView, true);
+                }
+
                 if (R.id.home == id) {
                     Intent intent = new Intent(getApplicationContext(), TeacherHome.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                     return true;
-                }
-                else if (R.id.chat == id) {
+                } else if (R.id.chat == id) {
                     loadFrag(new Chats());
                     return true;
-                }
-                else if (R.id.settings == id) {
+                } else if (R.id.settings == id) {
                     loadFrag(new Settings());
                     return true;
-                }
-                else if (R.id.jobs == id) {
+                } else if (R.id.jobs == id) {
                     loadFrag(new Jobs());
                     return true;
-                }
-                else {
+                } else {
                     loadFrag(new Blogs());
                     return true;
                 }
@@ -76,5 +91,15 @@ public class TeacherHome extends AppCompatActivity {
         FragmentTransaction tx=fm.beginTransaction();
         tx.add(R.id.containerFrag, frag);
         tx.commit();
+    }
+    private void scaleIcon(View iconView, boolean isSelected) {
+        float scaleValue = isSelected ? 1.2f : 1f; // 1.2x scale for selected, 1x for deselected
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(iconView, "scaleX", scaleValue);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(iconView, "scaleY", scaleValue);
+        scaleX.setDuration(150);
+        scaleY.setDuration(150);
+        AnimatorSet scaleAnimation = new AnimatorSet();
+        scaleAnimation.playTogether(scaleX, scaleY);
+        scaleAnimation.start();
     }
 }
