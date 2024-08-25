@@ -3,17 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:layout_margin="0dp"
+    android:padding="0dp"
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TeacherHome">
 
+    <FrameLayout
+        android:id="@+id/containerFrag"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
+        android:layout_height="0dp"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,14 +33,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#3A9EBF"
-                > <!-- Change this color to match your app theme -->
-
+                android:background="#3A9EBF"> <!-- Change this color to match your app theme -->
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
@@ -37,7 +48,6 @@
                     app:title="Edubridge"
                     app:titleTextAppearance="@style/CustomToolbarTitle"
                     app:titleTextColor="@android:color/white" />
-
             </com.google.android.material.appbar.AppBarLayout>
 
             <LinearLayout
@@ -107,26 +117,26 @@
 
                 <ImageView
                     android:id="@+id/maths"
-                    android:layout_width="@dimen/_85sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:src="@drawable/maths" />
 
                 <ImageView
                     android:id="@+id/science"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_70sdp"
                     android:src="@drawable/science" />
 
                 <ImageView
                     android:id="@+id/language"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:src="@drawable/language" />
 
                 <ImageView
                     android:id="@+id/sports"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
                     android:src="@drawable/sports" />
             </LinearLayout>
 
@@ -187,26 +197,26 @@
 
                 <ImageView
                     android:id="@+id/art"
-                    android:layout_width="@dimen/_75sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:src="@drawable/art" />
 
                 <ImageView
                     android:id="@+id/history"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:src="@drawable/history" />
 
                 <ImageView
                     android:id="@+id/music"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:src="@drawable/music" />
 
                 <ImageView
                     android:id="@+id/special"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:src="@drawable/special" />
             </LinearLayout>
 
@@ -276,7 +286,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_120sdp"
+                    android:layout_marginStart="@dimen/_100sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:fontFamily="@font/roboto"
                     android:text="@string/view_more"
@@ -316,13 +326,8 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
-    <FrameLayout
-        android:id="@+id/containerFrag"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

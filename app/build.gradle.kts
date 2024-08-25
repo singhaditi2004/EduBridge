@@ -57,7 +57,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-database:20.0.5")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.squareup.picasso:picasso:2.8")
-    implementation ("com.etebarian:meow-bottom-navigation:1.2.0")
+  //  implementation ("com.etebarian:meow-bottom-navigation:1.2.0")
     //  implementation ("com.google.android.libraries.places:places:3.1.0")
 
 }

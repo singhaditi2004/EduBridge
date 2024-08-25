@@ -93,7 +93,7 @@ public class TeacherHome extends AppCompatActivity {
         tx.commit();
     }
     private void scaleIcon(View iconView, boolean isSelected) {
-        float scaleValue = isSelected ? 1.2f : 1f; // 1.2x scale for selected, 1x for deselected
+        float scaleValue = isSelected ? 1.5f : 1f; // 1.5x scale for selected, 1x for deselected
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(iconView, "scaleX", scaleValue);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(iconView, "scaleY", scaleValue);
         scaleX.setDuration(150);
