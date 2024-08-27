@@ -48,7 +48,7 @@
                 android:fontFamily="@font/leckerli_one"
                 android:text="@string/teacher"
                 android:textAllCaps="false"
-                android:textColor="@color/darkSky"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_18sdp" />
 
             <TextView
@@ -72,7 +72,7 @@
                 android:fontFamily="@font/leckerli_one"
                 android:text="@string/school_authority"
                 android:textAllCaps="false"
-                android:textColor="@color/darkSky"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_18sdp" />
 
             <TextView

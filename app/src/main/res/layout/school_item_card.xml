@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/blueSearch">
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="@dimen/_300sdp"
@@ -24,27 +23,30 @@
             android:src="@drawable/schoool"
             app:civ_border_color="#FF000000"
             app:civ_border_width="2dp" />
+
         <TextView
             android:id="@+id/schoolNameCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_113sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:fontFamily="@font/roboto"
-            android:layout_marginStart="@dimen/_113sdp"
             android:text="@string/school_name"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/schoolTimeCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_55sdp"
             android:fontFamily="@font/roboto"
             android:text="@string/timings"
             android:textColor="@color/lightGolden"
-            android:layout_gravity="center_horizontal"
             android:textSize="@dimen/_13sdp"
             android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,8 +70,8 @@
                 android:id="@+id/ratingsCard"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_85sdp"
                 android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_85sdp"
                 android:numStars="5"
                 android:rating="0"
                 android:stepSize="1" />

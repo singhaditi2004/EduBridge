@@ -87,4 +87,5 @@
     <string name="view_more">View more</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="explore_with_job_collection">Explore with job collection</string>
 </resources>

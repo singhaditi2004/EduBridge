@@ -49,14 +49,14 @@ public class TeacherHome extends AppCompatActivity {
                     MenuItem menuItem = bottonNav.getMenu().getItem(i);
                     View iconView = bottonNav.findViewById(menuItem.getItemId()).findViewById(com.google.android.material.R.id.icon);
                     if (iconView != null) {
-                        scaleIcon(iconView, false);
+                        scaleIcon(iconView, true);
                     }
                 }
 
                 // Get the selected item's icon view and scale it up
                 View selectedIconView = bottonNav.findViewById(id).findViewById(com.google.android.material.R.id.icon);
                 if (selectedIconView != null) {
-                    scaleIcon(selectedIconView, true);
+                    scaleIcon(selectedIconView, false);
                 }
 
                 if (R.id.home == id) {
