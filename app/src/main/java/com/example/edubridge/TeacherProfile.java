@@ -178,6 +178,7 @@ public class TeacherProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uploadImageToFirebase();
+                UserRole.saveUserRole(TeacherProfile.this, "teacher");
                 Intent i=new Intent(TeacherProfile.this, TeacherHome.class);
                 startActivity(i);
             }
