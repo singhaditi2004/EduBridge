@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ScrollView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -86,10 +88,21 @@ public class TeacherHome extends AppCompatActivity {
             return insets;
         });
     }
-    public  void loadFrag(Fragment frag){
-        FragmentManager fm=getSupportFragmentManager();
-        FragmentTransaction tx=fm.beginTransaction();
-        tx.add(R.id.containerFrag, frag);
+    public void loadFrag(Fragment frag) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction tx = fm.beginTransaction();
+
+        // Hide the ScrollView when a fragment is loaded
+        ScrollView scrollView = findViewById(R.id.scrollView2);
+        scrollView.setVisibility(View.GONE);
+
+        // Make the fragment container visible
+        FrameLayout containerFrag = findViewById(R.id.containerFrag);
+        containerFrag.setVisibility(View.VISIBLE);
+
+        // Load the fragment into the container
+        tx.replace(R.id.containerFrag, frag);
+        tx.addToBackStack(null);
         tx.commit();
     }
     private void scaleIcon(View iconView, boolean isSelected) {

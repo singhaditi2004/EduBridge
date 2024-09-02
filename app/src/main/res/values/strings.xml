@@ -89,4 +89,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="explore_with_job_collection">Explore with job collection</string>
     <string name="messaging">Messaging</string>
+    <string name="search">Search</string>
+    <string name="username">UserName</string>
 </resources>

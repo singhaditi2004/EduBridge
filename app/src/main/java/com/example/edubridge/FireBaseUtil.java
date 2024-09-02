@@ -6,10 +6,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FireBaseUtil {
-    public static String user(){
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        return uid;
-    }
+
     public static DocumentReference currUser() {
         // Get the current user's UID from Firebase Authentication
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -21,9 +18,7 @@ public class FireBaseUtil {
         return db.collection("users").document(uid);
     }
     public static boolean isLoogedIn(){
-        if(user()!=null){
-            return true;
-        }
-        return false;
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        return currentUser != null;
     }
 }

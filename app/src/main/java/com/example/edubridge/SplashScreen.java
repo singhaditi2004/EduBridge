@@ -30,13 +30,15 @@ public class SplashScreen extends AppCompatActivity {
         linearLayout.startAnimation(fadeZoomAnimation);
         new Handler().postDelayed(() -> {
             // After the splash screen duration, start the main activity
-            if(FireBaseUtil.isLoogedIn()){
-                Intent mainIntent = new Intent(SplashScreen.this, TeacherHome.class);
-                startActivity(mainIntent);
+            Intent mainIntent;
+            if (FireBaseUtil.isLoogedIn()) {
+                mainIntent = new Intent(SplashScreen.this, TeacherHome.class);
+            } else {
+                mainIntent = new Intent(SplashScreen.this, MainActivity.class);
             }
-            Intent mainIntent = new Intent(SplashScreen.this, MainActivity.class);
             startActivity(mainIntent);
             finish();
+
         }, SPLASH_DISPLAY_LENGTH);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

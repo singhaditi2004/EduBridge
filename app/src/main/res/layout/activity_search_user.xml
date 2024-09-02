@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blueSearch"
-    tools:context=".Chats">
+    android:background="@color/white"
+    tools:context=".SearchUser">
 
     <RelativeLayout
-        android:id="@+id/relativeOne"
+        android:id="@+id/relativeTwoUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/darkSky"
@@ -18,8 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_10sdp"
+            android:layout_toEndOf="@id/searchImgButt"
             android:fontFamily="@font/roboto"
-            android:text="@string/messaging"
+            android:text="@string/search"
             android:textColor="@color/white"
             android:textSize="@dimen/_22sdp"
             android:textStyle="bold" />
@@ -28,19 +31,26 @@
             android:id="@+id/searchImgButt"
             android:layout_width="@dimen/_22sdp"
             android:layout_height="@dimen/_22sdp"
-            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/_12sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitXY"
-            android:src="@drawable/search" />
+            android:src="@drawable/back_img" />
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/frameChats"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeOne"
-        />
+        android:layout_below="@id/relativeTwoUser">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_round"
+            android:layout_margin="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp"
+            android:hint="@string/username"
+            android:gravity="center"
+            android:elevation="@dimen/_5sdp"
 
+            />
+    </RelativeLayout>
 </RelativeLayout>
