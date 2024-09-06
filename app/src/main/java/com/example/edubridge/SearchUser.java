@@ -53,7 +53,7 @@ public class SearchUser extends AppCompatActivity {
         });
     }
     public void searchUserName(String searchName){
-        List<String> userNames=new ArrayList<>();
+        List<String> userN=new ArrayList<>();
 
 
     }
