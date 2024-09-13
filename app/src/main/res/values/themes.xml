@@ -5,7 +5,11 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorControlHighlight">@color/lightGolden</item>
+        <item name="colorPrimary">@color/darkSky</item>
+        <item name="colorPrimaryDark">@color/sky</item>
+        <item name="colorAccent">@color/darkSky</item>
+        <item name="colorControlHighlight">@color/white</item>
+
     </style>
 
     <style name="Theme.EduBridge" parent="Base.Theme.EduBridge" />

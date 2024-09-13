@@ -6,7 +6,35 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".Jobs">
+    <RelativeLayout
+        android:id="@+id/relativeOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkSky"
+        android:padding="@dimen/_10sdp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/roboto"
+            android:text="Jobs"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/searchImgButt"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitXY"
+            android:src="@drawable/search" />
+    </RelativeLayout>
     <ScrollView
         android:id="@+id/scrollViewJobs"
         android:layout_width="match_parent"
@@ -24,8 +52,9 @@
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="@dimen/_45sdp"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_marginStart="@dimen/_minus24sdp"
-                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_50sdp"
                 android:layout_marginBottom="@dimen/_12sdp"
                 android:background="@drawable/searchviewbg"
                 android:elevation="@dimen/_15sdp" />
@@ -36,7 +65,8 @@
                 android:layout_marginStart="@dimen/_13sdp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/explore_with_job_collection"
-                android:textSize="@dimen/_19sdp"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
@@ -44,38 +74,47 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/white"
                 app:cardElevation="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_80sdp"
                     android:layout_gravity="center"
+                    android:background="@color/white"
                     android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:elevation="@dimen/_43sdp">
+                    android:padding="@dimen/_3sdp"
+                   >
 
                     <ImageView
                         android:id="@+id/mathsJob"
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_75sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_70sdp"
                         android:src="@drawable/maths" />
 
                     <ImageView
                         android:id="@+id/scienceJob"
-                        android:layout_width="@dimen/_65sdp"
-                        android:layout_height="@dimen/_75sdp"
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/_55sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
                         android:src="@drawable/science" />
 
                     <ImageView
                         android:id="@+id/languageJob"
-                        android:layout_width="@dimen/_75sdp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/_65sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_height="@dimen/_70sdp"
                         android:src="@drawable/language" />
 
                     <ImageView
                         android:id="@+id/specialJob"
-                        android:layout_width="@dimen/_75sdp"
-                        android:layout_height="@dimen/_85sdp"
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/_65sdp"
+                        android:layout_height="@dimen/_80sdp"
                         android:src="@drawable/special" />
 
                 </LinearLayout>

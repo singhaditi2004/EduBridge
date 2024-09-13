@@ -21,7 +21,7 @@
             android:fontFamily="@font/roboto"
             android:text="@string/messaging"
             android:textColor="@color/white"
-            android:textSize="@dimen/_22sdp"
+            android:textSize="@dimen/_18sdp"
             android:textStyle="bold" />
 
         <ImageButton

@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -43,7 +44,7 @@
                 <SearchView
                     android:id="@+id/searchView"
                     android:layout_width="@dimen/_250sdp"
-                    android:layout_height="@dimen/_45sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -52,8 +53,8 @@
                     android:elevation="@dimen/_15sdp" />
 
                 <ImageView
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_45sdp"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -91,7 +92,7 @@
                 android:text="@string/job_categories"
                 android:textColor="@color/black"
                 android:textFontWeight="700"
-                android:textSize="@dimen/_16sdp" />
+                android:textSize="@dimen/_15sdp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,26 +103,29 @@
 
                 <ImageView
                     android:id="@+id/maths"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_75sdp"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
                     android:src="@drawable/maths" />
 
                 <ImageView
                     android:id="@+id/science"
-                    android:layout_width="@dimen/_65sdp"
-                    android:layout_height="@dimen/_70sdp"
+                    android:layout_width="@dimen/_55sdp"
+                    android:layout_height="@dimen/_65sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
                     android:src="@drawable/science" />
 
                 <ImageView
                     android:id="@+id/language"
-                    android:layout_width="@dimen/_75sdp"
-                    android:layout_height="@dimen/_75sdp"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_height="@dimen/_65sdp"
                     android:src="@drawable/language" />
 
                 <ImageView
                     android:id="@+id/sports"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_70sdp"
+                    android:layout_width= "@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
                     android:src="@drawable/sports" />
             </LinearLayout>
 
@@ -140,6 +144,7 @@
                     android:text="@string/mathematics"
                     android:textFontWeight="700"
                     android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <TextView
@@ -147,6 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_12sdp"
                     android:fontFamily="@font/roboto"
+                    android:textColor="@color/black"
                     android:text="@string/science"
                     android:textFontWeight="700"
                     android:textSize="@dimen/_12sdp"
@@ -157,6 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_35sdp"
                     android:fontFamily="@font/roboto"
+                    android:textColor="@color/black"
                     android:text="@string/language"
                     android:textFontWeight="700"
                     android:textSize="@dimen/_12sdp"
@@ -165,6 +172,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:layout_marginStart="@dimen/_30sdp"
                     android:fontFamily="@font/roboto"
                     android:text="@string/sports"
@@ -182,26 +190,30 @@
 
                 <ImageView
                     android:id="@+id/art"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_75sdp"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
                     android:src="@drawable/art" />
 
                 <ImageView
                     android:id="@+id/history"
-                    android:layout_width="@dimen/_75sdp"
-                    android:layout_height="@dimen/_75sdp"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
                     android:src="@drawable/history" />
 
                 <ImageView
                     android:id="@+id/music"
-                    android:layout_width="@dimen/_75sdp"
-                    android:layout_height="@dimen/_75sdp"
+                    android:layout_width="@dimen/_65sdp"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_height="@dimen/_70sdp"
                     android:src="@drawable/music" />
 
                 <ImageView
                     android:id="@+id/special"
-                    android:layout_width="@dimen/_75sdp"
-                    android:layout_height="@dimen/_75sdp"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_70sdp"
                     android:src="@drawable/special" />
             </LinearLayout>
 
@@ -216,6 +228,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_25sdp"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/roboto"
                     android:text="@string/art"
                     android:textFontWeight="700"
@@ -226,6 +239,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_52sdp"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/roboto"
                     android:text="@string/history"
                     android:textFontWeight="700"
@@ -238,6 +252,7 @@
                     android:layout_marginStart="@dimen/_45sdp"
                     android:fontFamily="@font/roboto"
                     android:text="@string/music"
+                    android:textColor="@color/black"
                     android:textFontWeight="700"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
@@ -245,10 +260,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_35sdp"
                     android:fontFamily="@font/roboto"
                     android:text="@string/literature"
                     android:textFontWeight="700"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
             </LinearLayout>
