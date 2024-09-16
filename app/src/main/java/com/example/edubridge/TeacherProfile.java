@@ -1,5 +1,6 @@
 package com.example.edubridge;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -43,12 +45,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -59,8 +64,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -82,6 +89,7 @@ public class TeacherProfile extends AppCompatActivity {
     private AppCompatButton saveBtn;
     private static final int PICK_PDF_FILE = 2;
     private TextView selectedFileName;
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +99,7 @@ public class TeacherProfile extends AppCompatActivity {
        /* if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), "AIzaSyBTOP3oytuqzkg9Pu9uERNrBK2PR4ld15Q");
         }*/
+        firestore = FirebaseFirestore.getInstance();
 
         // placesClient = Places.createClient(this);
         stateSpinner = findViewById(R.id.stateSpinner);
@@ -316,6 +325,7 @@ public class TeacherProfile extends AppCompatActivity {
                                             String imageUrl = uri.toString();
                                             saveImageUrlToDatabase(imageUrl);
                                             Picasso.get().load(imageUrl).into(profileImageView);
+                                            saveProfileDataToFirestore(imageUrl);
                                         }
                                     });
                                 }
@@ -323,6 +333,7 @@ public class TeacherProfile extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
+                                    saveProfileDataToFirestore("defaultImageUrl");
                                     Toast.makeText(TeacherProfile.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
@@ -330,6 +341,10 @@ public class TeacherProfile extends AppCompatActivity {
             });
         } else {
             profileImageView.setImageResource(R.drawable.user);
+            Uri defaultImageUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.user);
+            // Save profile with default image URI
+            saveProfileDataToFirestore(defaultImageUri.toString());
+
         }
     }
 
@@ -413,5 +428,41 @@ public class TeacherProfile extends AppCompatActivity {
         }
         return result;
     }
+    private void saveProfileDataToFirestore(String imageUrl) {
+        mAuth = FirebaseAuth.getInstance();
+        String userId = mAuth.getCurrentUser().getUid();
+        TextInputEditText naame=findViewById(R.id.name);
+        TextInputEditText phone1=findViewById(R.id.phone);
+        // Get name and location from EditTexts (or any input source you are using)
+        String name = naame.getText().toString().trim();
+        String phone = phone1.getText().toString().trim();
+
+        // Create a map to store the user data
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("name", name);
+        userData.put("phone", phone);
+        userData.put("profileImageUrl", imageUrl);
+
+        // Reference to Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Save data to Firestore under the user's document
+        db.collection("users").document(userId)
+                .set(userData)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(TeacherProfile.this, "Profile saved successfully!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(TeacherProfile.this, "Error saving profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+
 
 }

@@ -8,6 +8,26 @@ public class UserModel {
     private String profileImageUrl;
     private String location;
 
+    public UserModel(String userId, String name, String email, String role, String profileImageUrl, String location, String phone) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.role = role;
+        this.profileImageUrl = profileImageUrl;
+        this.location = location;
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String phone;
+
     // Default constructor required for calls to DataSnapshot.getValue(UserModel.class)
     public UserModel() {
     }
@@ -20,14 +40,6 @@ public class UserModel {
         this.location = location;
     }
 
-    public UserModel(String userId, String name, String email, String role, String profileImageUrl, String location) {
-        this.userId = userId;
-        this.name = name;
-        this.email = email;
-        this.role = role;
-        this.profileImageUrl = profileImageUrl;
-        this.location = location;
-    }
 
     // Getters and setters for each field
     public String getUserId() {

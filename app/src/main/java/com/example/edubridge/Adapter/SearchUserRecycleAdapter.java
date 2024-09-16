@@ -27,7 +27,7 @@ public class SearchUserRecycleAdapter extends FirestoreRecyclerAdapter<UserModel
     @Override
     protected void onBindViewHolder(@NonNull UserModetViewHolder holder, int position, @NonNull UserModel model) {
         holder.userName.setText(model.getName());
-        holder.locat.setText(model.getLocation());
+        holder.phone.setText(model.getLocation());
     }
 
     @NonNull
@@ -38,12 +38,12 @@ public class SearchUserRecycleAdapter extends FirestoreRecyclerAdapter<UserModel
     }
 
     class UserModetViewHolder extends RecyclerView.ViewHolder {
-        TextView locat, userName;
+        TextView phone, userName;
         ImageView profilePic;
 
         public UserModetViewHolder(@NonNull View itemView) {
             super(itemView);
-            locat = itemView.findViewById(R.id.location);
+            phone = itemView.findViewById(R.id.phone);
             userName = itemView.findViewById(R.id.userName);
             profilePic = itemView.findViewById(R.id.profilepicview);
 

@@ -30,11 +30,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/location"
+            android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
-            android:text="Location"
+            android:text="Phone"
             android:textColor="@color/lightgrey"
             android:textSize="@dimen/_13sdp" />
     </LinearLayout>
