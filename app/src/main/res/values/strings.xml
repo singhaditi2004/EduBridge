@@ -91,4 +91,6 @@
     <string name="messaging">Messaging</string>
     <string name="search">Search</string>
     <string name="username">UserName</string>
+    <string name="user_name">User Name</string>
+    <string name="write_message_here">Write message here ...</string>
 </resources>

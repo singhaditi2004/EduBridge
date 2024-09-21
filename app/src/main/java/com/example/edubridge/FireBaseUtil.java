@@ -2,6 +2,7 @@ package com.example.edubridge;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -20,5 +21,11 @@ public class FireBaseUtil {
     public static boolean isLoogedIn(){
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         return currentUser != null;
+    }
+    public static CollectionReference allChatsCollectionReference() {
+        return FirebaseFirestore.getInstance().collection("chats");
+    }
+    public static CollectionReference allUserCollectionReference(){
+        return FirebaseFirestore.getInstance().collection("users");
     }
 }

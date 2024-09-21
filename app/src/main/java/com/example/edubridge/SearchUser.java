@@ -14,6 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.edubridge.Adapter.SearchUserRecycleAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +27,7 @@ public class SearchUser extends AppCompatActivity {
     ImageButton search, backButton;
     EditText name;
     SearchUserRecycleAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +52,7 @@ public class SearchUser extends AppCompatActivity {
                     name.setError("Invalid Username");
                     return;
                 }
-                searchUserName(searchItem);
+                setupSearchRecyclerView(searchItem);
             }
         });
 
@@ -58,20 +63,51 @@ public class SearchUser extends AppCompatActivity {
         });
     }
 
-    public void searchUserName(String searchName) {
-       adapter=new SearchUserRecycleAdapter(,getApplicationContext());
-       searchUser.setLayoutManager(new LinearLayoutManager(this));
-       searchUser.setAdapter(adapter);
-       adapter.startListening();
+    void setupSearchRecyclerView(String searchItem) {
+        // Get the current user ID
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        // Query the chats collection to find chat documents where the current user is a participant
+        Query chatQuery = FireBaseUtil.allChatsCollectionReference()
+                .whereArrayContains("participants", currentUserId)
+                .orderBy("timestamp", Query.Direction.DESCENDING);
 
+        chatQuery.get().addOnSuccessListener(querySnapshot -> {
+            List<String> contactIds = new ArrayList<>();
 
+            // Loop through chat documents to extract participant IDs (excluding the current user)
+            for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                List<String> participants = (List<String>) document.get("participants");
+                for (String participantId : participants) {
+                    if (!participantId.equals(currentUserId)) {
+                        contactIds.add(participantId);
+                    }
+                }
+            }
+
+            // Query the users collection for the contacts matching the searchItem
+            Query userQuery = FireBaseUtil.allUserCollectionReference()
+                    .whereIn("userId", contactIds)
+                    .whereGreaterThanOrEqualTo("name", searchItem)
+                    .orderBy("name", Query.Direction.ASCENDING);
+
+            FirestoreRecyclerOptions<UserModel> options = new FirestoreRecyclerOptions.Builder<UserModel>()
+                    .setQuery(userQuery, UserModel.class)
+                    .build();
+
+            // Set up the RecyclerView adapter
+            adapter = new SearchUserRecycleAdapter(options, getApplicationContext());
+            searchUser.setLayoutManager(new LinearLayoutManager(this));
+            searchUser.setAdapter(adapter);
+            adapter.startListening();
+        });
     }
+
 
     @Override
     protected void onStart() {
         super.onStart();
-        if(adapter!=null){
+        if (adapter != null) {
             adapter.startListening();
         }
     }
@@ -79,7 +115,7 @@ public class SearchUser extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if(adapter!=null){
+        if (adapter != null) {
             adapter.stopListening();
         }
     }
@@ -87,7 +123,7 @@ public class SearchUser extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(adapter!=null){
+        if (adapter != null) {
             adapter.startListening();
         }
     }
