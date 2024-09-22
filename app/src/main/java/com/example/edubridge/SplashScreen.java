@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.edubridge.Utils.FireBaseUtil;
+
 public class SplashScreen extends AppCompatActivity {
     private static final int SPLASH_DISPLAY_LENGTH = 2000;
 

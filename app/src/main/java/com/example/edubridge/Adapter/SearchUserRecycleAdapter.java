@@ -1,6 +1,7 @@
 package com.example.edubridge.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.edubridge.ChatActivity;
 import com.example.edubridge.R;
 import com.example.edubridge.UserModel;
+import com.example.edubridge.Utils.AndroidUtils;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
@@ -29,6 +32,10 @@ public class SearchUserRecycleAdapter extends FirestoreRecyclerAdapter<UserModel
         holder.userName.setText(model.getName());
         holder.phone.setText(model.getPhone());
         holder.itemView.setOnClickListener(v -> {
+            Intent i=new Intent(context, ChatActivity.class);
+            AndroidUtils.passModelAsIntent(i,model);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
 
         });
     }

@@ -1,4 +1,4 @@
-package com.example.edubridge;
+package com.example.edubridge.Utils;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
