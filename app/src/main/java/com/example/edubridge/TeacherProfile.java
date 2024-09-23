@@ -409,14 +409,12 @@ public class TeacherProfile extends AppCompatActivity {
         String result = null;
         if (uri.getScheme().equals("content")) {
             Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-            try {
-                if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+            if (cursor != null && cursor.moveToFirst()) {
+                int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                if (index >= 0) {
+                    result = cursor.getString(index);
                 }
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
-                }
+                cursor.close();
             }
         }
         if (result == null) {
@@ -428,6 +426,7 @@ public class TeacherProfile extends AppCompatActivity {
         }
         return result;
     }
+
     private void saveProfileDataToFirestore(String imageUrl) {
         mAuth = FirebaseAuth.getInstance();
         String userId = mAuth.getCurrentUser().getUid();

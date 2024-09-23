@@ -1,4 +1,4 @@
-package com.example.edubridge;
+package com.example.edubridge.Model;
 
 public class UserModel {
     private String userId;

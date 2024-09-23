@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.edubridge.ChatActivity;
 import com.example.edubridge.R;
-import com.example.edubridge.UserModel;
+import com.example.edubridge.Model.UserModel;
 import com.example.edubridge.Utils.AndroidUtils;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;

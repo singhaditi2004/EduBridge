@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.example.edubridge.UserModel;
+import com.example.edubridge.Model.UserModel;
 
 public class AndroidUtils {
     public static void showToast(Context context, String message) {

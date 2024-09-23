@@ -18,6 +18,10 @@ public class FireBaseUtil {
         // Create and return a DocumentReference to the user's document in the "users" collection
         return db.collection("users").document(uid);
     }
+    public static String getCurrentUserId(){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        return uid;
+    }
     public static boolean isLoogedIn(){
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         return currentUser != null;
@@ -27,5 +31,19 @@ public class FireBaseUtil {
     }
     public static CollectionReference allUserCollectionReference(){
         return FirebaseFirestore.getInstance().collection("users");
+    }
+    public static DocumentReference getChatRoomReference(String chatRoomId){
+        return FirebaseFirestore.getInstance().collection("chatrooms").document(chatRoomId);
+    }
+    public static String getChatRoomId(String usId1,String usId2){
+        if(usId1.hashCode()<usId2.hashCode()){
+            return usId1+"_"+usId2;
+        }
+        else{
+            return usId2+"_"+usId1;
+        }
+    }
+    public static CollectionReference getChatRoomMessageReference(String chatRoomId){
+        return getChatRoomReference(chatRoomId).collection("chats");
     }
 }
