@@ -8,4 +8,6 @@
     <color name="lightSky">#22BDDE</color>
     <color name="blueSearch">#B6E8F3</color>
     <color name="lightGolden">#94784F</color>
+    <color name="chatsender">#55B5CA</color>
+    <color name="chatReciever">#165F70</color>
 </resources>

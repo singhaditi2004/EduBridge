@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.edubridge.Adapter.ChatRecyclerAdapter;
 import com.example.edubridge.Model.ChatMessageModel;
 import com.example.edubridge.Model.ChatRoomModel;
 import com.example.edubridge.Model.UserModel;
@@ -29,6 +30,7 @@ public class ChatActivity extends AppCompatActivity {
     UserModel otherUser;
     EditText textMess;
     ChatRoomModel chatRoomModel;
+    ChatRecyclerAdapter chatRecyclerAdapter;
     String chatRoomId;
     ImageButton backBut,sendBut;
     TextView userName;
@@ -55,13 +57,18 @@ public class ChatActivity extends AppCompatActivity {
             if(message.isEmpty()){
                 return;
             }
-            sendMessageToUser(message);            
+            sendMessageToUser(message);
+            setUpChatRecyclerView();
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void setUpChatRecyclerView() {
+
     }
 
     private void sendMessageToUser(String message) {
