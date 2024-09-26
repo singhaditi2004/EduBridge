@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/_10sdp"
+    android:background="@drawable/edittext_round"
+    android:elevation="@dimen/_2sdp">
+
+    <include
+        android:id="@+id/chat_frag_profile"
+        layout="@layout/profile_pic_view"
+        android:layout_width="@dimen/_52sdp"
+        android:layout_height="@dimen/_52sdp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_16sdp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/userNameFragChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                tools:text="User Name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/timeFragChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                tools:text="time"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/lightgrey"
+                android:textSize="@dimen/_13sdp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/messageFragChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            tools:text="message"
+            android:textColor="@color/lightgrey"
+            android:textSize="@dimen/_13sdp" />
+    </LinearLayout>
+</LinearLayout>

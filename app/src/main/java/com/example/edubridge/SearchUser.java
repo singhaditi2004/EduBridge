@@ -70,9 +70,7 @@ public class SearchUser extends AppCompatActivity {
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         // Query the chats collection to find chat documents where the current user is a participant
-        Query chatQuery = FireBaseUtil.allChatsCollectionReference()
-                .whereArrayContains("participants", currentUserId)
-                .orderBy("timestamp", Query.Direction.DESCENDING);
+        Query chatQuery = FireBaseUtil.allChatsCollectionReference().whereArrayContains("participants", currentUserId).orderBy("timestamp", Query.Direction.DESCENDING);
 
         chatQuery.get().addOnSuccessListener(querySnapshot -> {
             List<String> contactIds = new ArrayList<>();
@@ -88,14 +86,9 @@ public class SearchUser extends AppCompatActivity {
             }
 
             // Query the users collection for the contacts matching the searchItem
-            Query userQuery = FireBaseUtil.allUserCollectionReference()
-                    .whereIn("userId", contactIds)
-                    .whereGreaterThanOrEqualTo("name", searchItem)
-                    .orderBy("name", Query.Direction.ASCENDING);
+            Query userQuery = FireBaseUtil.allUserCollectionReference().whereIn("userId", contactIds).whereGreaterThanOrEqualTo("name", searchItem).orderBy("name", Query.Direction.ASCENDING);
 
-            FirestoreRecyclerOptions<UserModel> options = new FirestoreRecyclerOptions.Builder<UserModel>()
-                    .setQuery(userQuery, UserModel.class)
-                    .build();
+            FirestoreRecyclerOptions<UserModel> options = new FirestoreRecyclerOptions.Builder<UserModel>().setQuery(userQuery, UserModel.class).build();
 
             // Set up the RecyclerView adapter
             adapter = new SearchUserRecycleAdapter(options, getApplicationContext());

@@ -42,5 +42,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeOne"
         />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatFragRecycle"
+        android:layout_below="@+id/relativeOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        />
 
 </RelativeLayout>
