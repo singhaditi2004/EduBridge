@@ -1,4 +1,4 @@
-package com.example.edubridge;
+package com.example.edubridge.School;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.edubridge.R;
 
 public class SchoolProfile extends AppCompatActivity {
 

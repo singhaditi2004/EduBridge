@@ -1,11 +1,9 @@
-package com.example.edubridge;
+package com.example.edubridge.Teacher;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -22,10 +20,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.example.edubridge.Blogs;
+import com.example.edubridge.Chat.Chats;
+import com.example.edubridge.R;
+import com.example.edubridge.Settings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 public class TeacherHome extends AppCompatActivity {
     BottomNavigationView bottonNav;

@@ -6,6 +6,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.List;
+
 public class FireBaseUtil {
 
     public static DocumentReference currUser() {
@@ -45,5 +47,16 @@ public class FireBaseUtil {
     }
     public static CollectionReference getChatRoomMessageReference(String chatRoomId){
         return getChatRoomReference(chatRoomId).collection("chats");
+    }
+    public static CollectionReference allChatRoomCollectionReference(){
+        return FirebaseFirestore.getInstance().collection("chatrooms");
+    }
+    public static DocumentReference getOtherUserFromChatRoom(List<String>list){
+        if(list.get(0).equals(FireBaseUtil.getCurrentUserId())){
+          return  allUserCollectionReference().document(list.get(1));
+        }
+        else{
+            return  allUserCollectionReference().document(list.get(0));
+        }
     }
 }

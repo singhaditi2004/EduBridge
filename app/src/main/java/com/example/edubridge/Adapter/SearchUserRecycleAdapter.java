@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.edubridge.ChatActivity;
+import com.example.edubridge.Chat.ChatActivity;
 import com.example.edubridge.R;
 import com.example.edubridge.Model.UserModel;
 import com.example.edubridge.Utils.AndroidUtils;

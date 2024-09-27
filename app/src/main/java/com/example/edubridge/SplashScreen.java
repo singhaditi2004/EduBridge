@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.edubridge.Teacher.TeacherHome;
 import com.example.edubridge.Utils.FireBaseUtil;
 
 public class SplashScreen extends AppCompatActivity {

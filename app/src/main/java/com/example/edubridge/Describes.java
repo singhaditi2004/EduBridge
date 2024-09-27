@@ -11,6 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.edubridge.School.SchoolProfile;
+import com.example.edubridge.Teacher.TeacherProfile;
+
 public class Describes extends AppCompatActivity {
     AppCompatButton teacherBtn, schoolBtn;
 

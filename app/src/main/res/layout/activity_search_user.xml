@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9E8EC"
-    tools:context=".SearchUser">
+    tools:context=".Chat.SearchUser">
 
     <RelativeLayout
         android:id="@+id/relativeTwoUser"

@@ -1,7 +1,6 @@
 package com.example.edubridge.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.edubridge.ChatActivity;
+import com.example.edubridge.Model.UserModel;
 import com.example.edubridge.R;
 import com.example.edubridge.Model.ChatRoomModel;
-import com.example.edubridge.Utils.AndroidUtils;
+import com.example.edubridge.Utils.FireBaseUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
@@ -29,7 +28,12 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatRoom
 
     @Override
     protected void onBindViewHolder(@NonNull ChatRoomModelViewHolder holder, int position, @NonNull ChatRoomModel model) {
-
+        FireBaseUtil.getOtherUserFromChatRoom(model.getUserid()).get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                UserModel otherUserModel=task.getResult().toObject(UserModel.class);
+                holder.userName.setText();
+            }
+        });
     }
 
     @NonNull

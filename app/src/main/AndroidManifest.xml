@@ -19,10 +19,10 @@
         android:theme="@style/Theme.EduBridge"
         tools:targetApi="31">
         <activity
-            android:name=".ChatActivity"
+            android:name=".Chat.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchUser"
+            android:name=".Chat.SearchUser"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
@@ -34,16 +34,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TeacherHome"
+            android:name=".Teacher.TeacherHome"
             android:exported="false" />
         <activity
             android:name=".SignUp"
             android:exported="false" />
         <activity
-            android:name=".SchoolProfile"
+            android:name=".School.SchoolProfile"
             android:exported="false" />
         <activity
-            android:name=".TeacherProfile"
+            android:name=".Teacher.TeacherProfile"
             android:exported="false" />
         <activity
             android:name=".Describes"

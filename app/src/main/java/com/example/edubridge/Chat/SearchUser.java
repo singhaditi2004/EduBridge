@@ -1,4 +1,4 @@
-package com.example.edubridge;
+package com.example.edubridge.Chat;
 
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.edubridge.Adapter.SearchUserRecycleAdapter;
 import com.example.edubridge.Model.UserModel;
+import com.example.edubridge.R;
 import com.example.edubridge.Utils.FireBaseUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
