@@ -3,6 +3,7 @@ package com.example.edubridge.Teacher;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+
 import android.provider.OpenableColumns;
 import android.view.ViewGroup;
 import android.graphics.Color;
@@ -88,6 +89,9 @@ public class TeacherProfile extends AppCompatActivity {
     private static final int PICK_PDF_FILE = 2;
     private TextView selectedFileName;
     private FirebaseFirestore firestore;
+    public static   String emailIdAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -307,6 +311,7 @@ public class TeacherProfile extends AppCompatActivity {
             mAuth = FirebaseAuth.getInstance();
             String email = mAuth.getCurrentUser().getEmail();
             String encodedEmail = encodeEmail(email);
+            emailIdAuth=encodedEmail;
             StorageReference fileReference = storageReference.child(encodedEmail + "." + getFileExtension(imageUri));
 
             // Delete the old image before uploading the new one
@@ -366,7 +371,7 @@ public class TeacherProfile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         String email = mAuth.getCurrentUser().getEmail();
         String encodedEmail = encodeEmail(email);
-
+        emailIdAuth=encodedEmail;
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(encodedEmail);
 
         // Fetch the profile image URL from the database
@@ -461,5 +466,11 @@ public class TeacherProfile extends AppCompatActivity {
     }
 
 
+    public static String getEmailIdAuth() {
+        return emailIdAuth;
+    }
 
+    public static void setEmailIdAuth(String emailIdAuth) {
+        TeacherProfile.emailIdAuth = emailIdAuth;
+    }
 }

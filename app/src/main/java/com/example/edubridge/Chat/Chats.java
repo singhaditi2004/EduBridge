@@ -96,7 +96,7 @@ public class Chats extends Fragment {
     public void onResume() {
         super.onResume();
         if (recentChatAdapter != null) {
-            recentChatAdapter.startListening();
+            recentChatAdapter.notifyDataSetChanged();
         }
     }
 }

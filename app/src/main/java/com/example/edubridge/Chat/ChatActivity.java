@@ -80,17 +80,14 @@ public class ChatActivity extends AppCompatActivity {
     private void setUpChatRecyclerView() {
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         // Query the chats collection to find chat documents where the current user is a participant
-        Query chatQuery = FireBaseUtil.getChatRoomMessageReference(chatRoomId)
-                .orderBy("timestamp", Query.Direction.DESCENDING);
+        Query chatQuery = FireBaseUtil.getChatRoomMessageReference(chatRoomId).orderBy("timestamp", Query.Direction.DESCENDING);
 
 
-        FirestoreRecyclerOptions<ChatMessageModel> options = new FirestoreRecyclerOptions.Builder<ChatMessageModel>()
-                .setQuery(chatQuery, ChatMessageModel.class)
-                .build();
+        FirestoreRecyclerOptions<ChatMessageModel> options = new FirestoreRecyclerOptions.Builder<ChatMessageModel>().setQuery(chatQuery, ChatMessageModel.class).build();
 
         // Set up the RecyclerView adapter
         chatRecyclerAdapter = new ChatRecyclerAdapter(options, getApplicationContext());
-        LinearLayoutManager manager=new LinearLayoutManager(this);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setReverseLayout(true);
         recycleChat.setLayoutManager(manager);
         recycleChat.setAdapter(chatRecyclerAdapter);

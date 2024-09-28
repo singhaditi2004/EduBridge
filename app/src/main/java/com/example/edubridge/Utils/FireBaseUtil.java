@@ -1,11 +1,16 @@
 package com.example.edubridge.Utils;
 
+import com.example.edubridge.Teacher.TeacherProfile;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class FireBaseUtil {
@@ -58,5 +63,14 @@ public class FireBaseUtil {
         else{
             return  allUserCollectionReference().document(list.get(0));
         }
+    }
+    public static String timeStampToString(Timestamp timeStamp){
+       return new SimpleDateFormat("HH:MM").format(timeStamp.toString());
+    }
+    public static void logOut(){
+        FirebaseAuth.getInstance().signOut();
+    }
+    public static StorageReference getCurrentUserProfilePic(){
+        return FirebaseStorage.getInstance().getReference().child("profile_images").child(TeacherProfile.getEmailIdAuth());
     }
 }
