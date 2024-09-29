@@ -397,7 +397,7 @@ public class TeacherProfile extends AppCompatActivity {
     }
 
     private String encodeEmail(String email) {
-        return email.replace(".", ",");
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     private void openFilePicker() {

@@ -73,4 +73,7 @@ public class FireBaseUtil {
     public static StorageReference getCurrentUserProfilePic(){
         return FirebaseStorage.getInstance().getReference().child("profile_images").child(TeacherProfile.getEmailIdAuth());
     }
+    public static StorageReference getOtherUserProfilePic(String userId){
+        return FirebaseStorage.getInstance().getReference().child("profile_images").child(userId);
+    }
 }

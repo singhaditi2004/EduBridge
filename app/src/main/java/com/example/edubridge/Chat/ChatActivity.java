@@ -1,8 +1,10 @@
 package com.example.edubridge.Chat;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -44,6 +46,7 @@ public class ChatActivity extends AppCompatActivity {
     ImageButton backBut, sendBut;
     TextView userName;
     RecyclerView recycleChat;
+    ImageView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class ChatActivity extends AppCompatActivity {
         sendBut = findViewById(R.id.imgButtSend);
         userName = findViewById(R.id.userNameChat);
         recycleChat = findViewById(R.id.chatsRecycle);
+        profile=findViewById(R.id.ppChat);
         backBut.setOnClickListener(v -> {
             onBackPressed();
         });
@@ -69,6 +73,13 @@ public class ChatActivity extends AppCompatActivity {
             }
             sendMessageToUser(message);
             setUpChatRecyclerView();
+        });
+        FireBaseUtil.getOtherUserProfilePic(otherUser.getUserId()).getDownloadUrl().addOnCompleteListener(t-> {
+            if(t.isSuccessful()){
+                Uri uri=t.getResult();
+                AndroidUtils.setProfilePic(this,uri,profile);
+
+            }
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

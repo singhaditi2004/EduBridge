@@ -8,7 +8,6 @@
         android:layout_width="@dimen/_52sdp"
         android:layout_height="@dimen/_52sdp"
         android:src="@drawable/user"
-        app:tint="@color/lightgrey"
         android:padding="@dimen/_4sdp"
         android:background="@color/black"
         android:layout_centerInParent="true"

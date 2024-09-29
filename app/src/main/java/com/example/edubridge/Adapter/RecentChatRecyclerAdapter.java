@@ -37,10 +37,10 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatRoom
                 boolean lastMessageSentByMe = model.getLastMessSendId().equals(FireBaseUtil.getCurrentUserId());
 
                 UserModel otherUserModel = task.getResult().toObject(UserModel.class);
-                FireBaseUtil.getCurrentUserProfilePic().getDownloadUrl().addOnCompleteListener(t-> {
-                    if(t.isSuccessful()){
-                      Uri uri=t.getResult();
-                      AndroidUtils.setProfilePic(context,uri,holder.profilePic);
+                FireBaseUtil.getOtherUserProfilePic(otherUserModel.getUserId()).getDownloadUrl().addOnCompleteListener(t -> {
+                    if (t.isSuccessful()) {
+                        Uri uri = t.getResult();
+                        AndroidUtils.setProfilePic(context, uri, holder.profilePic);
 
                     }
                 });
@@ -52,8 +52,8 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatRoom
                 }
                 holder.lastMessageTime.setText(FireBaseUtil.timeStampToString(model.getLastMessage()));
                 holder.itemView.setOnClickListener(v -> {
-                    Intent i=new Intent(context, ChatActivity.class);
-                    AndroidUtils.passModelAsIntent(i,otherUserModel);
+                    Intent i = new Intent(context, ChatActivity.class);
+                    AndroidUtils.passModelAsIntent(i, otherUserModel);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
 
