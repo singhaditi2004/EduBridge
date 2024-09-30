@@ -7,7 +7,7 @@ public class UserModel {
     private String role;
     private String profileImageUrl;
     private String location;
-
+    private String FCMToken;
     public UserModel(String userId, String name, String email, String role, String profileImageUrl, String location, String phone) {
         this.userId = userId;
         this.name = name;
@@ -16,6 +16,14 @@ public class UserModel {
         this.profileImageUrl = profileImageUrl;
         this.location = location;
         this.phone = phone;
+    }
+
+    public String getFCMToken() {
+        return FCMToken;
+    }
+
+    public void setFCMToken(String FCMToken) {
+        this.FCMToken = FCMToken;
     }
 
     public String getPhone() {

@@ -13,7 +13,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.edubridge.Chat.ChatActivity;
+import com.example.edubridge.Chat.Chats;
+import com.example.edubridge.Model.UserModel;
 import com.example.edubridge.Teacher.TeacherHome;
+import com.example.edubridge.Utils.AndroidUtils;
 import com.example.edubridge.Utils.FireBaseUtil;
 
 public class SplashScreen extends AppCompatActivity {
@@ -31,18 +35,37 @@ public class SplashScreen extends AppCompatActivity {
 
         // Apply the animation to the LinearLayout
         linearLayout.startAnimation(fadeZoomAnimation);
-        new Handler().postDelayed(() -> {
-            // After the splash screen duration, start the main activity
-            Intent mainIntent;
-            if (FireBaseUtil.isLoogedIn()) {
-                mainIntent = new Intent(SplashScreen.this, TeacherHome.class);
-            } else {
-                mainIntent = new Intent(SplashScreen.this, MainActivity.class);
-            }
-            startActivity(mainIntent);
-            finish();
 
-        }, SPLASH_DISPLAY_LENGTH);
+        if (getIntent().getExtras() != null) {
+            //from notif
+            String uid = getIntent().getExtras().getString("userId");
+            FireBaseUtil.allUserCollectionReference().document(uid).get().addOnCompleteListener(task -> {
+                if (FireBaseUtil.isLoogedIn() && task.isSuccessful()) {
+                    UserModel model = task.getResult().toObject(UserModel.class);
+                    Intent im = new Intent(this, Chats.class);
+                    im.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(im);
+                    Intent i = new Intent(this, ChatActivity.class);
+                    AndroidUtils.passModelAsIntent(i, model);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                    finish();
+                }
+            });
+        } else {
+            new Handler().postDelayed(() -> {
+                // After the splash screen duration, start the main activity
+                Intent mainIntent;
+                if (FireBaseUtil.isLoogedIn()) {
+                    mainIntent = new Intent(SplashScreen.this, TeacherHome.class);
+                } else {
+                    mainIntent = new Intent(SplashScreen.this, MainActivity.class);
+                }
+                startActivity(mainIntent);
+                finish();
+
+            }, SPLASH_DISPLAY_LENGTH);
+        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
