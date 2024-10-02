@@ -63,5 +63,5 @@ dependencies {
   //  implementation ("com.etebarian:meow-bottom-navigation:1.2.0")
     //  implementation ("com.google.android.libraries.places:places:3.1.0")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
-
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }

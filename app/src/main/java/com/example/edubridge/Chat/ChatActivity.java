@@ -33,9 +33,14 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
 
 public class ChatActivity extends AppCompatActivity {
     UserModel otherUser;
@@ -60,7 +65,7 @@ public class ChatActivity extends AppCompatActivity {
         sendBut = findViewById(R.id.imgButtSend);
         userName = findViewById(R.id.userNameChat);
         recycleChat = findViewById(R.id.chatsRecycle);
-        profile=findViewById(R.id.ppChat);
+        profile = findViewById(R.id.ppChat);
         backBut.setOnClickListener(v -> {
             onBackPressed();
         });
@@ -74,10 +79,10 @@ public class ChatActivity extends AppCompatActivity {
             sendMessageToUser(message);
             setUpChatRecyclerView();
         });
-        FireBaseUtil.getOtherUserProfilePic(otherUser.getUserId()).getDownloadUrl().addOnCompleteListener(t-> {
-            if(t.isSuccessful()){
-                Uri uri=t.getResult();
-                AndroidUtils.setProfilePic(this,uri,profile);
+        FireBaseUtil.getOtherUserProfilePic(otherUser.getUserId()).getDownloadUrl().addOnCompleteListener(t -> {
+            if (t.isSuccessful()) {
+                Uri uri = t.getResult();
+                AndroidUtils.setProfilePic(this, uri, profile);
 
             }
         });
@@ -124,11 +129,20 @@ public class ChatActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentReference> task) {
                 if (task.isSuccessful()) {
                     textMess.setText("");
+                    sendNotification(message);
                 }
             }
         });
     }
 
+    void sendNotification(String message) {
+
+    }
+    void callAPI(JSONObject obj){
+       MediaType JSON = MediaType.get("application/json");
+        OkHttpClient client = new OkHttpClient();
+        String url="https:"
+    }
     void getOrCreateChatRoomModel() {
         FireBaseUtil.getChatRoomReference(chatRoomId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
