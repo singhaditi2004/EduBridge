@@ -64,4 +64,6 @@ dependencies {
     //  implementation ("com.google.android.libraries.places:places:3.1.0")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation ("com.google.auth:google-auth-library-oauth2-http:1.11.0")
+
 }

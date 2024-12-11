@@ -27,6 +27,8 @@ import com.example.edubridge.Utils.FireBaseUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.auth.oauth2.ServiceAccountCredentials;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -35,12 +37,19 @@ import com.google.firebase.firestore.Query;
 
 import org.json.JSONObject;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Callback;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class ChatActivity extends AppCompatActivity {
     UserModel otherUser;
@@ -136,13 +145,74 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     void sendNotification(String message) {
+        FireBaseUtil.currentUserDetails().get().addOnCompleteListener(task->{
+            if(task.isSuccessful()){
+                UserModel current=task.getResult().toObject(UserModel.class);
+
+            }
+        });
 
     }
-    void callAPI(JSONObject obj){
-       MediaType JSON = MediaType.get("application/json");
+    public void callAPI(JSONObject obj) {
+        MediaType JSON = MediaType.get("application/json");
         OkHttpClient client = new OkHttpClient();
-        String url="https:"
+
+        // Replace with your Firebase Project ID
+        String projectId = "edubridge-56977";
+        String url = "https://fcm.googleapis.com/v1/projects/" + projectId + "/messages:send";
+
+        // Generate or retrieve the access token (you need to implement this part)
+        String accessToken = getAccessToken(); // This method should return the Bearer token
+
+        // Prepare the request body
+        RequestBody body = RequestBody.create(obj.toString(), JSON);
+
+        // Prepare the request with the Authorization header
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .header("Authorization", "Bearer " + accessToken)  // Add Bearer token for authentication
+                .build();
+
+        // Execute the request in a separate thread (to avoid blocking the main thread)
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace(); // Handle failure
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Handle successful response
+                    System.out.println("Notification sent successfully: " + response.body().string());
+                } else {
+                    // Handle error response
+                    System.err.println("Error sending notification: " + response.body().string());
+                }
+            }
+        });
     }
+
+    public static String getAccessToken() {
+        try {
+            // Path to the service account JSON key file
+            String jsonKeyPath = "C:/Users/Ashutosh Bais/AndroidStudioProjects/EduBridge/edubridge-56977-69efe0553909.json";
+            // Load the credentials from the JSON file
+            GoogleCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream(jsonKeyPath))
+                    .createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase.messaging"));
+
+            // Refresh the credentials (this gets the access token)
+            credentials.refreshIfExpired();
+
+            // Return the access token
+            return credentials.getAccessToken().getTokenValue();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;  // Return null or handle the error as needed
+        }
+    }
+
     void getOrCreateChatRoomModel() {
         FireBaseUtil.getChatRoomReference(chatRoomId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
