@@ -147,7 +147,7 @@ public class ChatActivity extends AppCompatActivity {
     void sendNotification(String message) {
         FireBaseUtil.currentUserDetails().get().addOnCompleteListener(task->{
             if(task.isSuccessful()){
-                UserModel current=task.getResult().toObject(UserModel.class);
+                UserModel  current=task.getResult().toObject(UserModel.class);
 
             }
         });
