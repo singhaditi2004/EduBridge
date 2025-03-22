@@ -145,14 +145,50 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     void sendNotification(String message) {
-        FireBaseUtil.currentUserDetails().get().addOnCompleteListener(task->{
-            if(task.isSuccessful()){
-                UserModel current=task.getResult().toObject(UserModel.class);
+        // Fetch the current user's details
+        FireBaseUtil.currentUserDetails().get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                UserModel currentUser = task.getResult().toObject(UserModel.class);
+                if (currentUser == null) return;
 
+                // Fetch the recipient's FCM token
+                FireBaseUtil.currentUserDetails(otherUser.getUserId()).get().addOnCompleteListener(userTask -> {
+                    if (userTask.isSuccessful()) {
+                        UserModel recipientUser = userTask.getResult().toObject(UserModel.class);
+                        if (recipientUser == null || recipientUser.getFcmToken() == null) return;
+
+                        // Construct the notification payload
+                        JSONObject notificationPayload = new JSONObject();
+                        JSONObject notificationDetails = new JSONObject();
+                        JSONObject dataPayload = new JSONObject();
+                        try {
+                            // Notification block for showing a visible notification
+                            notificationDetails.put("title", currentUser.getName());
+                            notificationDetails.put("body", message);
+                            notificationDetails.put("icon", "ic_notification"); // Replace with your app's notification icon
+                            notificationDetails.put("click_action", "OPEN_CHAT_ACTIVITY");
+
+                            // Data block for additional info
+                            dataPayload.put("chatRoomId", chatRoomId);
+                            dataPayload.put("senderId", FireBaseUtil.getCurrentUserId());
+                            dataPayload.put("senderName", currentUser.getName());
+
+                            // Full message payload
+                            notificationPayload.put("notification", notificationDetails);
+                            notificationPayload.put("data", dataPayload);
+                            notificationPayload.put("to", recipientUser.getFcmToken()); // Send to recipient's FCM token
+
+                            // Call the API to send the notification
+                            callAPI(notificationPayload);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
-
     }
+
     public void callAPI(JSONObject obj) {
         MediaType JSON = MediaType.get("application/json");
         OkHttpClient client = new OkHttpClient();

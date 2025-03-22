@@ -3,235 +3,312 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".Teacher.TeacherProfile">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_24sdp">
+
+            <!-- Header Section -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/create_profile"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:textSize="@dimen/_28sdp"
-                android:textColor="@color/darkSky"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
                 android:fontFamily="@font/merriweather_bold"
-                />
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_image"
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="@dimen/_140sdp"
-                android:layout_gravity="center"
-                android:fontFamily="@font/albert_sans_medium"
-                android:src="@drawable/user"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"/>
-            <ImageView
-                android:id="@+id/add_icon"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:contentDescription="@string/add_icon"
-                android:src="@drawable/add"
-                android:fontFamily="@font/albert_sans_medium"
-                android:background="@drawable/button_describes"
-                android:layout_marginTop="@dimen/_minus55sdp"
-                android:layout_marginStart="@dimen/_190sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                />
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nameLay"
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            android:hint="@string/name"
-            android:fontFamily="@font/albert_sans_medium"
-            android:layout_marginTop="@dimen/_7sdp"
-            app:boxStrokeColor="@color/sky"
-            app:hintTextColor="@color/sky"
-           >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:fontFamily="@font/albert_sans_medium"
+                android:text="@string/create_profile"
                 android:textColor="@color/darkSky"
-                app:hintTextColor="@color/sky" />
+                android:textSize="@dimen/_28sdp" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneLay"
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            android:fontFamily="@font/albert_sans_medium"
-            android:hint="@string/phone_number"
-            android:layout_marginTop="@dimen/_7sdp"
-            app:boxStrokeColor="@color/sky"
-            app:hintTextColor="@color/sky"
-          >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/phone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:fontFamily="@font/albert_sans_medium"
-                android:textColor="@color/darkSky"
-                app:hintTextColor="@color/sky" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/addLay"
-                android:layout_width="@dimen/_250sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:hint="@string/address"
-                android:fontFamily="@font/albert_sans_medium"
-                android:layout_marginTop="@dimen/_7sdp"
-                app:boxStrokeColor="@color/sky"
-                app:hintTextColor="@color/sky"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/address"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/albert_sans_medium"
-                    android:gravity="center"
-                    android:textColor="@color/darkSky"
-                    app:hintTextColor="@color/sky" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-            <LinearLayout
+            <!-- Profile Image Section -->
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >
-            <Spinner
-                android:id="@+id/stateSpinner"
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:fontFamily="@font/albert_sans_medium"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:layout_marginBottom="@dimen/_7sdp"
-                android:layout_marginStart="@dimen/_33sdp"
-                android:background="@drawable/spinner_background"
-                 />
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_16sdp">
 
-            <!-- Add City Spinner -->
-            <Spinner
-                android:id="@+id/citySpinner"
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:fontFamily="@font/albert_sans_medium"
-                android:gravity="center"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:background="@drawable/spinner_background"
-                />
-            </LinearLayout>
-            <Spinner
-                android:id="@+id/experience"
-                android:layout_width="@dimen/_250sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:fontFamily="@font/albert_sans_medium"
-                android:layout_gravity="center"
-                android:background="@drawable/spinner_background"
-                />
-          <!--  <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="@dimen/_250sdp"
-                android:layout_height="@dimen/_38sdp"
-                android:background="@drawable/spinner_background"
-                android:fontFamily="@font/albert_sans_medium"
-                android:text="@string/upload_your_resume"
-                android:textAllCaps="false"
-                android:textColor="@color/darkSky"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:drawableEnd="@drawable/arrow"
-                android:paddingEnd="@dimen/_55sdp"
-                android:paddingStart="@dimen/_50sdp"
-                /> -->
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="@dimen/_130sdp"
+                    android:elevation="@dimen/_4sdp"
+                    android:src="@drawable/user"
+                    app:civ_border_color="@color/sky"
+                    app:civ_border_width="2dp" />
+
+                <ImageView
+                    android:id="@+id/add_icon"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="end|bottom"
+                    android:background="@drawable/button_describes"
+                    android:contentDescription="@string/add_icon"
+                    android:elevation="@dimen/_6sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/add" />
+            </FrameLayout>
+
+            <!-- Form Fields -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:padding="8dp">
+                android:paddingStart="@dimen/_24sdp"
+                android:paddingEnd="@dimen/_24sdp">
 
-                <TextView
-                    android:id="@+id/upload_resume_button"
-                    android:layout_width="@dimen/_250sdp"
-                    android:layout_height="@dimen/_35sdp"
-                    android:text="@string/upload_resume"
-                    android:textColor="#00BCD4"
-                    android:textSize="@dimen/_12sdp"
-                    android:padding="8dp"
-                    android:background="@drawable/spinner_background"
+                <!-- Name Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nameLay"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/white"
                     android:fontFamily="@font/albert_sans_medium"
-                    android:gravity="center"
-                    android:minWidth="100dp"
-                    android:layout_gravity="center"/>
+                    android:hint="@string/name"
+                    app:boxStrokeColor="@color/sky"
+                    app:hintTextColor="@color/sky"
+                    app:startIconDrawable="@drawable/user"
+                    app:startIconTint="@color/sky">
 
-                <!-- TextView to show the selected PDF file name -->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/albert_sans_medium"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/darkSky" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Phone Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/phoneLay"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/albert_sans_medium"
+                    android:hint="@string/phone_number"
+                    app:boxStrokeColor="@color/sky"
+                    app:hintTextColor="@color/sky"
+                    app:startIconDrawable="@android:drawable/ic_menu_call"
+                    app:startIconTint="@color/sky">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/albert_sans_medium"
+                        android:inputType="phone"
+                        android:textColor="@color/darkSky" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailLay"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/albert_sans_medium"
+                    android:hint="@string/_ad"
+                    app:boxStrokeColor="@color/sky"
+                    app:hintTextColor="@color/sky"
+                    app:startIconTint="@color/sky">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email_tech"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/albert_sans_medium"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/darkSky" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <!-- Address Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/addLay"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/albert_sans_medium"
+                    android:hint="@string/address"
+                    app:boxStrokeColor="@color/sky"
+                    app:hintTextColor="@color/sky"
+                    app:startIconDrawable="@android:drawable/ic_menu_mylocation"
+                    app:startIconTint="@color/sky">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/albert_sans_medium"
+                        android:inputType="textPostalAddress"
+                        android:textColor="@color/darkSky" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- State & City Spinners -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_4sdp"
+                            android:fontFamily="@font/albert_sans_medium"
+                            android:text="State"
+                            android:textColor="@color/sky" />
+
+                        <Spinner
+                            android:id="@+id/stateSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_48sdp"
+                            android:background="@drawable/spinner_background"
+                            android:fontFamily="@font/albert_sans_medium"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/_8sdp"
+                            android:paddingEnd="@dimen/_8sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_4sdp"
+                            android:fontFamily="@font/albert_sans_medium"
+                            android:text="City"
+                            android:textColor="@color/sky" />
+
+                        <Spinner
+                            android:id="@+id/citySpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_48sdp"
+                            android:background="@drawable/spinner_background"
+                            android:fontFamily="@font/albert_sans_medium"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/_8sdp"
+                            android:paddingEnd="@dimen/_8sdp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Experience Spinner -->
                 <TextView
-                    android:id="@+id/selected_file_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no_file_selected"
-                    android:textSize="@dimen/_11sdp"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/darker_gray"
-                    android:paddingTop="@dimen/_4sdp"/>
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:fontFamily="@font/albert_sans_medium"
+                    android:text="Experience"
+                    android:textColor="@color/sky" />
+
+                <Spinner
+                    android:id="@+id/experience"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48sdp"
+                    android:background="@drawable/spinner_background"
+                    android:fontFamily="@font/albert_sans_medium"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_8sdp" />
+
+                <!-- Resume Upload Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/upload_resume_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_48sdp"
+                        android:background="@drawable/spinner_background"
+                        android:drawableEnd="@drawable/arrow"
+                        android:fontFamily="@font/albert_sans_medium"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_12sdp"
+                        android:text="@string/upload_resume"
+                        android:textColor="@color/sky"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/selected_file_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/_4sdp"
+                        android:text="@string/no_file_selected"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+
+                <!-- Bio Field -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:fontFamily="@font/albert_sans_medium"
+                    android:text="Bio"
+                    android:textColor="@color/sky" />
+
+                <EditText
+                    android:id="@+id/bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:background="@drawable/spinner_background"
+                    android:fontFamily="@font/albert_sans_medium"
+                    android:gravity="top|start"
+                    android:hint="@string/bio"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/_12sdp"
+                    android:textColor="@color/darkSky"
+                    android:textColorHint="@color/darkSky" />
+
+                <!-- Save Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/saveBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48sdp"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:background="@drawable/button_bg"
+                    android:fontFamily="@font/albert_sans_medium"
+                    android:text="@string/save"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp" />
             </LinearLayout>
-
-            <EditText
-                android:id="@+id/bio"
-                android:layout_width="@dimen/_250sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:background="@drawable/spinner_background"
-                android:ems="10"
-                android:fontFamily="@font/albert_sans_medium"
-                android:gravity="center"
-                android:hint="@string/bio"
-                android:inputType="textMultiLine"
-                android:textColor="@color/darkSky"
-                android:textColorHint="@color/darkSky" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="@dimen/_39sdp"
-                android:text="@string/save"
-                android:id="@+id/saveBtn"
-                android:textSize="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:layout_gravity="center"
-                android:background="@drawable/button_bg"
-                android:fontFamily="@font/albert_sans_medium"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                />
         </LinearLayout>
-
     </ScrollView>
-
-
 </LinearLayout>

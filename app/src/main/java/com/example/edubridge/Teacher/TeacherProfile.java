@@ -309,40 +309,45 @@ public class TeacherProfile extends AppCompatActivity {
     private void uploadImageToFirebase() {
         if (imageUri != null) {
             mAuth = FirebaseAuth.getInstance();
-            String email = mAuth.getCurrentUser().getEmail();
-            String encodedEmail = encodeEmail(email);
-            emailIdAuth=encodedEmail;
-            StorageReference fileReference = storageReference.child(encodedEmail + "." + getFileExtension(imageUri));
 
-            // Delete the old image before uploading the new one
-            fileReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    fileReference.putFile(imageUri)
-                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            String imageUrl = uri.toString();
-                                            saveImageUrlToDatabase(imageUrl);
-                                            Picasso.get().load(imageUrl).into(profileImageView);
-                                            saveProfileDataToFirestore(imageUrl);
-                                        }
-                                    });
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    saveProfileDataToFirestore("defaultImageUrl");
-                                    Toast.makeText(TeacherProfile.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
-            });
-        } else {
+            TextInputEditText ema = findViewById(R.id.email_tech);
+            if (ema.getText() != null) {
+                String email = String.valueOf(ema.getText());
+                String encodedEmail = encodeEmail(email);
+                emailIdAuth = encodedEmail;
+                StorageReference fileReference = storageReference.child(encodedEmail + "." + getFileExtension(imageUri));
+
+                // Delete the old image before uploading the new one
+                fileReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        fileReference.putFile(imageUri)
+                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                String imageUrl = uri.toString();
+                                                saveImageUrlToDatabase(imageUrl);
+                                                Picasso.get().load(imageUrl).into(profileImageView);
+                                                saveProfileDataToFirestore(imageUrl);
+                                            }
+                                        });
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        saveProfileDataToFirestore("defaultImageUrl");
+                                        Toast.makeText(TeacherProfile.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
+            }
+        }
+        else {
             profileImageView.setImageResource(R.drawable.user);
             Uri defaultImageUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.user);
             // Save profile with default image URI
@@ -369,6 +374,7 @@ public class TeacherProfile extends AppCompatActivity {
         super.onStart();
 
         mAuth = FirebaseAuth.getInstance();
+
         String email = mAuth.getCurrentUser().getEmail();
         String encodedEmail = encodeEmail(email);
         emailIdAuth=encodedEmail;

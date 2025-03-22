@@ -1,5 +1,11 @@
 package com.example.edubridge.Model;
 
+import android.util.Log;
+
+import com.example.edubridge.Utils.FireBaseUtil;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 public class UserModel {
     private String userId;
     private String name;
@@ -99,5 +105,38 @@ public class UserModel {
                 ", role='" + role + '\'' +
                 ", profileImageUrl='" + profileImageUrl + '\'' +
                 '}';
+    }
+
+    public String getFcmToken() {
+        final String[] token = new String[1];
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        // Log and handle the failure
+                        Log.e("FCM Token", "Fetching FCM token failed", task.getException());
+                        return;
+                    }
+
+                    // Get the token
+                     token[0] = task.getResult();
+                    Log.d("FCM Token", "Token: " + token[0]);
+
+                    // Store the token in your backend (Firebase Firestore/Realtime Database or SharedPreferences)
+                    saveFcmTokenToBackend(token[0]);
+                });
+        return token[0];
+
+    }
+
+    // Helper method to save the token to your backend
+    private void saveFcmTokenToBackend(String token) {
+        String userId = FireBaseUtil.getCurrentUserId(); // Ensure this returns the logged-in user's ID
+        if (userId != null) {
+            FirebaseFirestore.getInstance().collection("users")
+                    .document(userId)
+                    .update("deviceToken", token)
+                    .addOnSuccessListener(aVoid -> Log.d("FCM Token", "Token successfully saved to backend"))
+                    .addOnFailureListener(e -> Log.e("FCM Token", "Error saving token", e));
+        }
     }
 }

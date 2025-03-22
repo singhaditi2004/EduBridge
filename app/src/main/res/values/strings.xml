@@ -94,4 +94,5 @@
     <string name="user_name">User Name</string>
     <string name="write_message_here">Write message here ...</string>
     <string name="logout">Log Out</string>
+    <string name="_ad">Email</string>
 </resources>

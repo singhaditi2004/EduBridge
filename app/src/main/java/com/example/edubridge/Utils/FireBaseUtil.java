@@ -1,5 +1,7 @@
 package com.example.edubridge.Utils;
 
+import android.util.Log;
+
 import com.example.edubridge.Teacher.TeacherProfile;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -7,6 +9,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -79,4 +82,10 @@ public class FireBaseUtil {
     public static DocumentReference currentUserDetails(){
         return FirebaseFirestore.getInstance().collection("users").document(FireBaseUtil.getCurrentUserId());
     }
+    // Add a method to fetch any user's document based on their userId
+    public static DocumentReference currentUserDetails(String userId) {
+        return FirebaseFirestore.getInstance().collection("users").document(userId);
+    }
+
+
 }

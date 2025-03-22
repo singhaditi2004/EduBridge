@@ -13,7 +13,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.edubridge.Utils.FireBaseUtil;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.firestore.DocumentReference;
 
 public class MainActivity extends AppCompatActivity {
     AppCompatButton getBtn;
@@ -40,12 +42,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void getFCMToken() {
-        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
-           if(task.isSuccessful()){
-               String token=task.getResult();
-               FireBaseUtil.currentUserDetails().update("FCMToken",token);
-
-           }
-        });
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    String token = task.getResult();
+                    DocumentReference userRef = FireBaseUtil.currentUserDetails();
+                    if (userRef != null) {
+                        userRef.update("FCMToken", token)
+                                .addOnSuccessListener(aVoid -> Log.d("FCM", "Token updated successfully"))
+                                .addOnFailureListener(e -> Log.e("FCM", "Failed to update token", e));
+                    } else {
+                        Log.e("FCM", "User document reference is null");
+                    }
+                } else {
+                    Log.e("FCM", "Failed to get FCM token");
+                }
+            });
+        } else {
+            Log.e("FCM", "User not logged in. Skipping token update.");
+        }
     }
 }
