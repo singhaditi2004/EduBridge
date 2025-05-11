@@ -1,10 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUp">
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/_16sdp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/treeLogoImage"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_250sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/tree_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/merriweather_bold"
+            android:text="@string/create_account"
+            android:textColor="@color/sky"
+            android:textSize="@dimen/_24sdp" />
+    </LinearLayout>
+
+    <!-- Form -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:orientation="vertical">
+
+        <!-- Email Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailSignupLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            app:boxStrokeColor="@color/sky"
+            app:endIconMode="clear_text"
+            app:hintTextColor="@color/sky">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailSignup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/darkSky" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <!-- Phone Number Field (New) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:hint="@string/phone_number"
+            app:boxStrokeColor="@color/sky"
+            app:endIconMode="clear_text"
+            app:hintTextColor="@color/sky">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phoneInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="+91"
+                android:inputType="phone"
+                android:textColor="@color/darkSky"
+                android:textSize="@dimen/_14sdp" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <!-- Password Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordSignupLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:hint="@string/password"
+            app:boxStrokeColor="@color/sky"
+            app:endIconMode="password_toggle"
+            app:hintTextColor="@color/sky">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordSignup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/darkSky" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- OTP Field (Hidden Initially) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/otpLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:hint="@string/enter_otp"
+            android:visibility="gone"
+            app:boxStrokeColor="@color/sky"
+            app:counterEnabled="true"
+            app:counterMaxLength="6"
+            app:hintTextColor="@color/sky">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/otpInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textColor="@color/darkSky" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- OTP Timer and Resend -->
+        <LinearLayout
+            android:id="@+id/otpTimerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/otpTimerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expires_in"
+                android:textColor="@color/darkSky"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/resendOtpBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:text="@string/resend_otp"
+                android:textColor="@color/sky"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+
+        <!-- Action Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/actionButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:backgroundTint="@color/sky"
+            android:text="@string/send_otp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            app:cornerRadius="@dimen/_8sdp" />
+
+        <!-- Back to Login -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/backToLoginBtn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="@string/already_have_account"
+            android:textColor="@color/sky"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:indeterminateTint="@color/sky"
+        android:visibility="gone" />
+</LinearLayout>

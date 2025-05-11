@@ -2,20 +2,16 @@ package com.example.edubridge;
 import android.content.Context;
 import android.content.SharedPreferences;
 public class UserRole {
-    private static final String PREF_NAME = "user_profile";
-    private static final String KEY_ROLE = "user_role";
+    private static final String PREFS_NAME = "UserRolePrefs";
+    private static final String ROLE_KEY = "user_role";
 
-    // Method to save user role in SharedPreferences
     public static void saveUserRole(Context context, String role) {
-        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(KEY_ROLE, role);
-        editor.apply();
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        prefs.edit().putString(ROLE_KEY, role).apply();
     }
 
-    // Method to get user role from SharedPreferences
     public static String getUserRole(Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPref.getString(KEY_ROLE, null); // Returns null if no role is found
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return prefs.getString(ROLE_KEY, null);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.edubridge;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -17,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.edubridge.Chat.ChatActivity;
 import com.example.edubridge.Chat.Chats;
 import com.example.edubridge.Model.UserModel;
+import com.example.edubridge.School.SchoolHome;
 import com.example.edubridge.Teacher.TeacherHome;
 import com.example.edubridge.Utils.AndroidUtils;
 import com.example.edubridge.Utils.FireBaseUtil;
@@ -68,11 +71,27 @@ public class SplashScreen extends AppCompatActivity {
         } else {
             // No notification, proceed with default navigation after splash delay
             new Handler().postDelayed(() -> {
-                Intent mainIntent = new Intent(SplashScreen.this, TeacherHome.class);
-                startActivity(mainIntent);
-                finish();
+                navigateBasedOnUserRole();
             }, SPLASH_DISPLAY_LENGTH);
         }
+    }
+
+    /**
+     * Navigates to the appropriate home screen based on user role
+     */
+    private void navigateBasedOnUserRole() {
+        String userRole = UserRole.getUserRole(this);
+
+        Intent mainIntent;
+        if (userRole != null && userRole.equals("teacher")) {
+            mainIntent = new Intent(SplashScreen.this, TeacherHome.class);
+        } else {
+            // Assuming you have a SchoolHome activity for non-teacher users
+            mainIntent = new Intent(SplashScreen.this, SchoolHome.class);
+        }
+
+        startActivity(mainIntent);
+        finish();
     }
 
     /**
@@ -82,7 +101,7 @@ public class SplashScreen extends AppCompatActivity {
         String uid = getIntent().getExtras().getString("userId");
         if (uid == null) {
             Log.e("SplashScreen", "User ID from notification is null");
-            navigateToDefaultScreen();
+            navigateBasedOnUserRole();
             return;
         }
 
@@ -103,21 +122,12 @@ public class SplashScreen extends AppCompatActivity {
                     finish();
                 } else {
                     Log.e("SplashScreen", "UserModel is null");
-                    navigateToDefaultScreen();
+                    navigateBasedOnUserRole();
                 }
             } else {
                 Log.e("SplashScreen", "Firestore query failed", task.getException());
-                navigateToDefaultScreen();
+                navigateBasedOnUserRole();
             }
         });
-    }
-
-    /**
-     * Navigates to the default screen (TeacherHome).
-     */
-    private void navigateToDefaultScreen() {
-        Intent mainIntent = new Intent(SplashScreen.this, TeacherHome.class);
-        startActivity(mainIntent);
-        finish();
     }
 }

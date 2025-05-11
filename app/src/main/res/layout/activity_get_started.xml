@@ -21,136 +21,148 @@
         android:layout_width="@dimen/_200sdp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_minus40sdp"
         android:fontFamily="@font/merriweather_bold"
-        android:gravity="start"
         android:text="@string/welcome_back"
         android:textColor="@color/sky"
-        android:textSize="@dimen/_28sdp" />
+        android:textSize="@dimen/_25sdp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/outlinedTextField"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_gravity="center"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_7sdp"
-        android:background="@color/white"
         android:hint="@string/email"
         app:boxStrokeColor="@color/sky"
+        app:endIconMode="clear_text"
         app:hintTextColor="@color/sky">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailLog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/darkSky"
-            app:hintTextColor="@color/sky" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/darkSky" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passLog"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_7sdp"
-        android:background="@color/white"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:hint="@string/password"
         app:boxStrokeColor="@color/sky"
-        app:hintTextColor="@color/sky"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6">
+        app:endIconMode="password_toggle"
+        app:hintTextColor="@color/sky">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwLog"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/darkSky"
-            app:hintTextColor="@color/sky" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="@color/darkSky" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginBtn"
-        android:layout_width="@dimen/_230sdp"
-        android:layout_height="@dimen/_37sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:background="@drawable/button_bg"
-        android:elevation="12dp"
-        android:fontFamily="@font/merriweather_bold"
-        android:gravity="center"
-        android:text="@string/sign_in"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sdp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/signUpBtn"
-        android:layout_width="@dimen/_230sdp"
-        android:layout_height="@dimen/_37sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:background="@drawable/whitebgbtn"
-        android:elevation="12dp"
-        android:fontFamily="@font/merriweather_bold"
-        android:gravity="center"
-        android:text="@string/sign_up"
-        android:textAllCaps="false"
-        android:textColor="@color/sky"
-        android:textSize="@dimen/_16sdp" />
 
     <TextView
         android:id="@+id/forgetBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:layout_marginRight="@dimen/_17sdp"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
         android:fontFamily="@font/merriweather_bold"
+        android:padding="@dimen/_4sdp"
         android:text="@string/forget_your_password"
         android:textAllCaps="false"
         android:textColor="@color/lightgrey"
-        android:textSize="@dimen/_13sdp" />
-
-    <View
-        android:layout_width="120dp"
-        android:layout_height="@dimen/_4sdp"
-        android:layout_marginStart="@dimen/_27sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:background="@color/lightgrey" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_minus15sdp"
+        android:textSize="@dimen/_10sdp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/button_bg"
         android:fontFamily="@font/merriweather_bold"
-        android:text="@string/or"
+        android:text="@string/sign_in"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/sky"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sdp"
+        app:cornerRadius="@dimen/_8sdp"
+        app:elevation="@dimen/_4sdp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signUpBtn"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/merriweather_bold"
+        android:text="@string/sign_up"
+        android:textAllCaps="false"
         android:textColor="@color/sky"
-        android:textFontWeight="500"
-        android:textSize="@dimen/_18sdp" />
+        android:textSize="@dimen/_16sdp"
+        app:cornerRadius="@dimen/_8sdp"
+        app:strokeColor="@color/sky"
+        app:strokeWidth="@dimen/_1sdp" />
 
-    <View
-        android:layout_width="120dp"
-        android:layout_height="@dimen/_4sdp"
-        android:layout_marginStart="@dimen/_200sdp"
-        android:layout_marginTop="@dimen/_minus13sdp"
-        android:background="@color/lightgrey" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <ImageButton
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_weight="1"
+            android:background="@color/lightgrey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:fontFamily="@font/merriweather_bold"
+            android:text="@string/or"
+            android:textColor="@color/sky"
+            android:textSize="@dimen/_16sdp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_weight="1"
+            android:background="@color/lightgrey" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/contWithGoogle"
-        android:layout_width="@dimen/_237sdp"
-        android:layout_height="@dimen/_37sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_17sdp"
-        android:background="@drawable/whitebgbtn"
-        android:padding="@dimen/_5sdp"
-        android:scaleType="centerInside"
-        app:srcCompat="@drawable/google_logo" />
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:fontFamily="@font/merriweather_bold"
+        android:textAllCaps="false"
+        android:textColor="@color/darkSky"
+        app:cornerRadius="@dimen/_8sdp"
+        app:icon="@drawable/google_logo"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/_8sdp"
+        app:iconTint="@null"
+        app:strokeColor="@color/lightgrey"
+        app:strokeWidth="@dimen/_1sdp"
+        android:text="@string/continue_with_google" />
 </LinearLayout>

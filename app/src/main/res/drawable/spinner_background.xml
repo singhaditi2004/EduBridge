@@ -1,6 +1,50 @@
-<!-- res/drawable/spinner_background.xml -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#FFFFFF"/>
-    <stroke android:width="2dp" android:color="@color/sky"/>
-    <corners android:radius="14dp"/>
-</shape>
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#20000000">
+    <item>
+        <layer-list>
+            <!-- Background with slight shadow effect -->
+            <item>
+                <shape>
+                    <solid android:color="#E0E0E0" />
+                    <corners android:radius="16dp" />
+                    <padding
+                        android:bottom="1dp"
+                        android:left="1dp"
+                        android:right="1dp"
+                        android:top="1dp" />
+                </shape>
+            </item>
+
+            <!-- Main background with stroke -->
+            <item>
+                <shape>
+                    <solid android:color="#FFFFFF" />
+                    <stroke
+                        android:width="2dp"
+                        android:color="@color/sky" />
+                    <corners android:radius="14dp" />
+                </shape>
+            </item>
+
+            <!-- Subtle gradient overlay -->
+            <item>
+                <shape>
+                    <gradient
+                        android:angle="90"
+                        android:endColor="#00FFFFFF"
+                        android:startColor="#10FFFFFF" />
+                    <corners android:radius="14dp" />
+                </shape>
+            </item>
+
+            <!-- Dropdown indicator -->
+            <item android:gravity="end|center_vertical">
+                <inset
+                    android:insetRight="12dp"
+                    android:drawable="@drawable/ic_arrow_drop_down"
+                    android:visible="true" />
+            </item>
+        </layer-list>
+    </item>
+</ripple>

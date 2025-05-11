@@ -120,12 +120,13 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleJobs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recycleJobs"
-                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_18sdp"
-                />
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

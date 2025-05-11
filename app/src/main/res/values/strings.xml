@@ -51,7 +51,15 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <!-- Add other strings here -->
-
+    <string name="create_account">Create Account</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="enter_otp">Enter OTP Code</string>
+    <string name="expires_in">Expires in</string>
+    <string name="expired">Expired</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="already_have_account">Already have an account? Sign in</string>
+    <string name="app_logo_description">Application Logo</string>
 
     <string name="forget_your_password">Forget your password</string>
     <string name="or">Or</string>
@@ -95,4 +103,36 @@
     <string name="write_message_here">Write message here ...</string>
     <string name="logout">Log Out</string>
     <string name="_ad">Email</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="otp_sent">OTP sent to %s</string>
+    <string name="otp_failed">Failed to send OTP. Check email and try again.</string>
+    <string name="network_error">Network error. Check your connection.</string>
+    <string name="edubridge">Edubridge</string>
+    <string name="home">Home</string>
+    <string name="jobs">Jobs</string>
+    <string name="blog">Blogs</string>
+    <string name="chat">Chat</string>
+    <string name="settings">Settings</string>
+    <string name="search_teachers">Search teachers</string>
+    <string name="add_job">Add Job</string>
+    <string name="my_applicants">My Applicants</string>
+    <string name="cancel">Cancel</string>
+    <string name="post_job">Post job</string>
+    <string name="create_job_posting">Create job posting</string>
+    <string name="fill_details_below">Fill details below</string>
+    <string name="job_title">Job title</string>
+    <string name="subject">Subject</string>
+    <string name="job_description">Job description</string>
+    <string name="requirements">Requirements</string>
+    <string name="your_job_will_be_visible_to_teachers_immediately">Your job will be visible to teachers immediately</string>
+    <string name="create_new_job">Create new job</string>
+    <string name="create_job">Create Job</string>
+    <string name="create_your_first_job_posting_to_attract_qualified_teachers">Create your first job posting to attract qualified teachers</string>
+    <string name="no_jobs_posted_yet">No Jobs Posted Yet</string>
+    <string name="filter">Filter</string>
+    <string name="application_note">Application Note</string>
+    <string name="view_profile">View Profile</string>
+    <string name="i">New</string>
+    <string name="no_applicants_yet">No Applicants Yet</string>
+    <string name="when_teachers_apply_to_your_job_they_ll_appear_here">When teachers apply to your job, they\'ll appear here</string>
 </resources>

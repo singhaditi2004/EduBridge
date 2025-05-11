@@ -29,6 +29,7 @@ public class Describes extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Describes.this, TeacherProfile.class);
                 startActivity(intent);
+
             }
         });
         schoolBtn.setOnClickListener(new View.OnClickListener() {

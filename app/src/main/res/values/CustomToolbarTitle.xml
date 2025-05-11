@@ -7,6 +7,7 @@
         <item name="android:textSize">@dimen/_24sdp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:titleMargin">@dimen/_5sdp</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
 </resources>

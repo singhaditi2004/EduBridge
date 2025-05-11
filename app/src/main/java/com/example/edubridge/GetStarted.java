@@ -7,108 +7,131 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.edubridge.Teacher.TeacherProfile;
+import com.example.edubridge.Teacher.TeacherHome;
+import com.example.edubridge.School.SchoolHome; // You'll need to create this
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class GetStarted extends AppCompatActivity {
-    AppCompatButton signIn, signUp;
-    ImageButton contGoogle;
-    EditText passLog, emailLog;
-    public FirebaseAuth mAuth;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference usersRef = database.getReference("users");
-
+    private AppCompatButton signIn, signUp;
+    private MaterialButton contGoogle;
+    private EditText passLog, emailLog;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_get_started);
+
+        // Initialize views
         signIn = findViewById(R.id.loginBtn);
         signUp = findViewById(R.id.signUpBtn);
         contGoogle = findViewById(R.id.contWithGoogle);
         passLog = findViewById(R.id.passwLog);
         emailLog = findViewById(R.id.emailLog);
-        FirebaseApp.initializeApp(this);
+
+        // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        db = FirebaseFirestore.getInstance();
 
-                if (emailLog.getText().toString().equals("")) {
-
-
-                    Toast.makeText(GetStarted.this, "Email cant be empty", Toast.LENGTH_SHORT).show();
-
-
-                } else if (passLog.getText().toString().contentEquals("")) {
-
-                    Toast.makeText(GetStarted.this, "Password cant be empty", Toast.LENGTH_SHORT).show();
-
-                } else {
-
-                    mAuth.signInWithEmailAndPassword(emailLog.getText().toString(), passLog.getText().toString())
-                            .addOnCompleteListener(GetStarted.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Log.d(TAG, "signInWithEmail:success");
-
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        Intent i= new Intent(GetStarted.this, TeacherProfile.class);
-                                        startActivity(i);
-
-                                        // Intent intent = new Intent(GetStarted.this, home.class);
-                                        // startActivity(intent);
-
-
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                        Toast.makeText(GetStarted.this, "Authentication failed.",
-                                                Toast.LENGTH_SHORT).show();
-
-                                        Log.e(emailLog.getText().toString(), "k");
-                                    }
-
-                                }
-                            });
-
-
-                }
-            }
+        signIn.setOnClickListener(v -> handleLogin());
+        signUp.setOnClickListener(v -> {
+            startActivity(new Intent(GetStarted.this, SignUp.class));
         });
 
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signUpActivity = new Intent(GetStarted.this, Describes.class);
-                startActivity(signUpActivity);
-            }
-        });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void handleLogin() {
+        String email = emailLog.getText().toString().trim();
+        String password = passLog.getText().toString().trim();
+
+        if (email.isEmpty()) {
+            Toast.makeText(this, "Email can't be empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            Toast.makeText(this, "Password can't be empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Show loading indicator if you have one
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            checkUserRole(user.getUid());
+                        }
+                    } else {
+                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                        Toast.makeText(GetStarted.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void checkUserRole(String uid) {
+        // First check if user is a teacher
+        db.collection("teachers").document(uid).get()
+                .addOnCompleteListener(teacherTask -> {
+                    if (teacherTask.isSuccessful() && teacherTask.getResult().exists()) {
+                        // User is a teacher
+                        startActivity(new Intent(this, TeacherHome.class));
+                        finish();
+                    } else {
+                        // If not teacher, check if school
+                        checkSchoolRole(uid);
+                    }
+                });
+    }
+
+    private void checkSchoolRole(String uid) {
+        db.collection("schools").document(uid).get()
+                .addOnCompleteListener(schoolTask -> {
+                    if (schoolTask.isSuccessful() && schoolTask.getResult().exists()) {
+                        // User is a school
+                        startActivity(new Intent(this, SchoolHome.class));
+                        finish();
+                    } else {
+                        // User not found in either collection
+                        Toast.makeText(this, "User role not found. Please complete your profile.",
+                                Toast.LENGTH_SHORT).show();
+                        // Optionally redirect to profile completion
+                        FirebaseAuth.getInstance().signOut();
+                    }
+                });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is already logged in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            checkUserRole(currentUser.getUid());
+        }
     }
 }

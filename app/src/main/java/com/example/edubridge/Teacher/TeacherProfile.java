@@ -89,8 +89,7 @@ public class TeacherProfile extends AppCompatActivity {
     private static final int PICK_PDF_FILE = 2;
     private TextView selectedFileName;
     private FirebaseFirestore firestore;
-    public static   String emailIdAuth;
-
+    public static String emailIdAuth;
 
 
     @Override
@@ -190,7 +189,7 @@ public class TeacherProfile extends AppCompatActivity {
             public void onClick(View v) {
                 uploadImageToFirebase();
                 UserRole.saveUserRole(TeacherProfile.this, "teacher");
-                Intent i=new Intent(TeacherProfile.this, TeacherHome.class);
+                Intent i = new Intent(TeacherProfile.this, TeacherHome.class);
                 startActivity(i);
             }
         });
@@ -310,44 +309,40 @@ public class TeacherProfile extends AppCompatActivity {
         if (imageUri != null) {
             mAuth = FirebaseAuth.getInstance();
 
-            TextInputEditText ema = findViewById(R.id.email_tech);
-            if (ema.getText() != null) {
-                String email = String.valueOf(ema.getText());
-                String encodedEmail = encodeEmail(email);
-                emailIdAuth = encodedEmail;
-                StorageReference fileReference = storageReference.child(encodedEmail + "." + getFileExtension(imageUri));
+            String email = mAuth.getCurrentUser().getEmail();
+            String encodedEmail = encodeEmail(email);
+            emailIdAuth = encodedEmail;
+            StorageReference fileReference = storageReference.child(encodedEmail + "." + getFileExtension(imageUri));
 
-                // Delete the old image before uploading the new one
-                fileReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        fileReference.putFile(imageUri)
-                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                    @Override
-                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                        fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                            @Override
-                                            public void onSuccess(Uri uri) {
-                                                String imageUrl = uri.toString();
-                                                saveImageUrlToDatabase(imageUrl);
-                                                Picasso.get().load(imageUrl).into(profileImageView);
-                                                saveProfileDataToFirestore(imageUrl);
-                                            }
-                                        });
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        saveProfileDataToFirestore("defaultImageUrl");
-                                        Toast.makeText(TeacherProfile.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    }
-                });
-            }
-        }
-        else {
+            // Delete the old image before uploading the new one
+            fileReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    fileReference.putFile(imageUri)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            String imageUrl = uri.toString();
+                                            saveImageUrlToDatabase(imageUrl);
+                                            Picasso.get().load(imageUrl).into(profileImageView);
+                                            saveProfileDataToFirestore(imageUrl);
+                                        }
+                                    });
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    saveProfileDataToFirestore("defaultImageUrl");
+                                    Toast.makeText(TeacherProfile.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            });
+        } else {
             profileImageView.setImageResource(R.drawable.user);
             Uri defaultImageUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.user);
             // Save profile with default image URI
@@ -377,7 +372,7 @@ public class TeacherProfile extends AppCompatActivity {
 
         String email = mAuth.getCurrentUser().getEmail();
         String encodedEmail = encodeEmail(email);
-        emailIdAuth=encodedEmail;
+        emailIdAuth = encodedEmail;
         databaseReference = FirebaseDatabase.getInstance().getReference("users").child(encodedEmail);
 
         // Fetch the profile image URL from the database
@@ -439,8 +434,8 @@ public class TeacherProfile extends AppCompatActivity {
     private void saveProfileDataToFirestore(String imageUrl) {
         mAuth = FirebaseAuth.getInstance();
         String userId = mAuth.getCurrentUser().getUid();
-        TextInputEditText naame=findViewById(R.id.name);
-        TextInputEditText phone1=findViewById(R.id.phone);
+        TextInputEditText naame = findViewById(R.id.name);
+        TextInputEditText phone1 = findViewById(R.id.phone);
         // Get name and location from EditTexts (or any input source you are using)
         String name = naame.getText().toString().trim();
         String phone = phone1.getText().toString().trim();
@@ -450,25 +445,22 @@ public class TeacherProfile extends AppCompatActivity {
         userData.put("name", name);
         userData.put("phone", phone);
         userData.put("profileImageUrl", imageUrl);
-
+        UserRole.saveUserRole(this, "teacher");
         // Reference to Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Save data to Firestore under the user's document
-        db.collection("users").document(userId)
+        // Save to "teachers" collection instead of "users"
+        db.collection("teachers").document(userId)
                 .set(userData)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(TeacherProfile.this, "Profile saved successfully!", Toast.LENGTH_SHORT).show();
-                    }
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Profile saved successfully!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, TeacherHome.class));
+                    finish();
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(TeacherProfile.this, "Error saving profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error saving profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
+
     }
 
 

@@ -1,0 +1,8 @@
+<!-- res/drawable/profile_background_gradient.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="#FFFFFF"
+        android:endColor="#F0F8FF"
+        android:angle="135" />
+</shape>
