@@ -26,9 +26,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_15sdp"
                 android:layout_gravity="bottom"
+                android:alpha="0.1"
                 android:scaleType="fitXY"
-                android:src="@drawable/wave_pattern"
-                android:alpha="0.1" />
+                android:src="@drawable/wave_pattern" />
         </androidx.appcompat.widget.Toolbar>
     </LinearLayout>
 
@@ -57,15 +57,15 @@
                 <SearchView
                     android:id="@+id/searchView"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/searchviewbg"
                     android:elevation="@dimen/_5sdp"
-                    android:queryHint="Search for teachers or subjects..."
                     android:iconifiedByDefault="false"
+                    android:queryHint="Search for teachers or subjects..."
                     android:transitionName="searchTransition" />
 
                 <ImageView
@@ -75,10 +75,10 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:background="@drawable/circle_bg"
-                    android:padding="@dimen/_8sdp"
                     android:contentDescription="@string/notification"
-                    android:src="@drawable/notification"
-                    android:elevation="@dimen/_3sdp" />
+                    android:elevation="@dimen/_3sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/notification" />
             </LinearLayout>
 
             <!-- Main Banner Card -->
@@ -129,16 +129,15 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
+                        app:cardBackgroundColor="#E3F2FD"
                         app:cardCornerRadius="@dimen/_25sdp"
-                        app:cardElevation="@dimen/_2sdp"
-                        app:cardBackgroundColor="#E3F2FD">
+                        app:cardElevation="@dimen/_2sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_home"
-                            app:tint="#3A9EBF" />
+                            android:src="@drawable/special" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -146,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/roboto"
-                        android:text="Home"
+                        android:text="@string/literature"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -164,16 +163,15 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
+                        app:cardBackgroundColor="#E8F5E9"
                         app:cardCornerRadius="@dimen/_25sdp"
-                        app:cardElevation="@dimen/_2sdp"
-                        app:cardBackgroundColor="#E8F5E9">
+                        app:cardElevation="@dimen/_2sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_teacher"
-                            app:tint="#4CAF50" />
+                            android:src="@drawable/science" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -181,7 +179,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/roboto"
-                        android:text="Teachers"
+                        android:text="@string/science"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -199,16 +197,15 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
+                        app:cardBackgroundColor="#FFF3E0"
                         app:cardCornerRadius="@dimen/_25sdp"
-                        app:cardElevation="@dimen/_2sdp"
-                        app:cardBackgroundColor="#FFF3E0">
+                        app:cardElevation="@dimen/_2sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_subject"
-                            app:tint="#FF9800" />
+                            android:src="@drawable/maths" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -216,7 +213,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/roboto"
-                        android:text="Subjects"
+                        android:text="@string/mathematics"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -234,16 +231,15 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
+                        app:cardBackgroundColor="#F3E5F5"
                         app:cardCornerRadius="@dimen/_25sdp"
-                        app:cardElevation="@dimen/_2sdp"
-                        app:cardBackgroundColor="#F3E5F5">
+                        app:cardElevation="@dimen/_2sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_event"
-                            app:tint="#9C27B0" />
+                            android:src="@drawable/sports" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -251,7 +247,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/roboto"
-                        android:text="Events"
+                        android:text="@string/sports"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -270,16 +266,15 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
+                        app:cardBackgroundColor="#E1F5FE"
                         app:cardCornerRadius="@dimen/_25sdp"
-                        app:cardElevation="@dimen/_2sdp"
-                        app:cardBackgroundColor="#E1F5FE">
+                        app:cardElevation="@dimen/_2sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_result"
-                            app:tint="#03A9F4" />
+                            android:src="@drawable/language" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -287,7 +282,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/roboto"
-                        android:text="Results"
+                        android:text="@string/language"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -305,16 +300,15 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
+                        app:cardBackgroundColor="#FFEBEE"
                         app:cardCornerRadius="@dimen/_25sdp"
-                        app:cardElevation="@dimen/_2sdp"
-                        app:cardBackgroundColor="#FFEBEE">
+                        app:cardElevation="@dimen/_2sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_timetable"
-                            app:tint="#F44336" />
+                            android:src="@drawable/history" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -322,7 +316,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/roboto"
-                        android:text="Timetable"
+                        android:text="@string/history"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -340,16 +334,15 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
+                        app:cardBackgroundColor="#E0F7FA"
                         app:cardCornerRadius="@dimen/_25sdp"
-                        app:cardElevation="@dimen/_2sdp"
-                        app:cardBackgroundColor="#E0F7FA">
+                        app:cardElevation="@dimen/_2sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_notice"
-                            app:tint="#00BCD4" />
+                            android:src="@drawable/music" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -357,7 +350,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/roboto"
-                        android:text="Notices"
+                        android:text="@string/music"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -375,16 +368,15 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
+                        app:cardBackgroundColor="#EFEBE9"
                         app:cardCornerRadius="@dimen/_25sdp"
-                        app:cardElevation="@dimen/_2sdp"
-                        app:cardBackgroundColor="#EFEBE9">
+                        app:cardElevation="@dimen/_2sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_settings"
-                            app:tint="#795548" />
+                            android:src="@drawable/art" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -392,7 +384,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/roboto"
-                        android:text="Settings"
+                        android:text="@string/art"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -406,7 +398,7 @@
                 android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:fontFamily="@font/roboto"
-                android:text="Available Teachers"
+                android:text="@string/available_teachers"
                 android:textColor="@color/darkSky"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
@@ -423,6 +415,7 @@
 
         </LinearLayout>
     </ScrollView>
+
     <FrameLayout
         android:id="@+id/containerFrag"
         android:layout_width="match_parent"
@@ -436,10 +429,10 @@
         android:layout_alignParentBottom="true"
         android:background="@color/darkSky"
         android:elevation="@dimen/_8sdp"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         app:itemIconTint="@color/bottomnavcolor"
         app:itemRippleColor="@color/lightGolden"
         app:itemTextColor="@color/white"
-        app:itemActiveIndicatorStyle="@android:color/transparent"
         app:menu="@menu/bottomnav" />
 
 </RelativeLayout>

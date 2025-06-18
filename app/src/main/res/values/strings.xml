@@ -135,4 +135,5 @@
     <string name="i">New</string>
     <string name="no_applicants_yet">No Applicants Yet</string>
     <string name="when_teachers_apply_to_your_job_they_ll_appear_here">When teachers apply to your job, they\'ll appear here</string>
+    <string name="available_teachers">Available Teachers</string>
 </resources>
