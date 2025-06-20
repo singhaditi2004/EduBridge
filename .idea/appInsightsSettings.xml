@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.edubridge" />
-                  <option name="mobileSdkAppId" value="1:240165166057:android:1922ca09fd1283517bc978" />
-                  <option name="projectId" value="edu-bridge-3cdf1" />
-                  <option name="projectNumber" value="240165166057" />
+                  <option name="mobileSdkAppId" value="1:647130778092:android:e0b89ee05aadc21bed58c9" />
+                  <option name="projectId" value="edubridge-56977" />
+                  <option name="projectNumber" value="647130778092" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
